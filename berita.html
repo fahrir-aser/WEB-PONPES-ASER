@@ -384,12 +384,10 @@
         let allNewsItems = [];
         let activeArticleSlug = "";
 
-        function cleanBrowserUrlBar() {
-            if (window.location.pathname.endsWith(".html")) {
-                const cleanUrl = window.location.pathname.replace(/\.html$/i, "") + window.location.search + window.location.hash;
-                window.history.replaceState(null, "", cleanUrl);
-            }
+       function cleanBrowserUrlBar() {
+            // Dibiarkan kosong agar URL tetap berita.html?slug=... dan tidak mengarah ke folder /berita/
         }
+        
 
         function toggleMobileBeritaMenu() {
             const nav = document.getElementById("mobile-berita-nav");
@@ -407,14 +405,12 @@
         }
 
         function resolveSlugFromLocation(beritaList) {
+            const params = new URLSearchParams(window.location.search);
+            const querySlug = (params.get("slug") || "").trim().toLowerCase();
+            if (querySlug) return querySlug;
+
             const hashSlug = decodeURIComponent(window.location.hash.replace(/^#/, "")).trim().toLowerCase();
             if (hashSlug) return hashSlug;
-
-            const parts = window.location.pathname.split("/").filter(Boolean);
-            const beritaIdx = parts.indexOf("berita");
-            if (beritaIdx !== -1 && parts[beritaIdx + 1]) {
-                return decodeURIComponent(parts[beritaIdx + 1]).trim().toLowerCase();
-            }
 
             if (Array.isArray(beritaList) && beritaList.length > 0) {
                 return buatSlugBerita(beritaList[0].Judul, 0);
@@ -424,7 +420,8 @@
 
         function getStaticShareUrl(slug) {
             const finalSlug = slug || activeArticleSlug || "berita-1";
-            return `${SITE_ORIGIN}/berita/${finalSlug}/`;
+            const base = window.location.href.split("#")[0].split("?")[0];
+            return `${base}?slug=${encodeURIComponent(finalSlug)}`;
         }
 
         function handleQuickNewsSearch(event) {
