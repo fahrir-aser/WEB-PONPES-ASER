@@ -1839,9 +1839,9 @@
         }
 
         function buildBeritaDetailUrl(item, index) {
-            const slug = buatSlugBerita(item.Judul, index);
-            return `berita/${slug}/`;
-        }
+    const slug = buatSlugBerita(item.Judul, index);
+    return `berita.html?slug=${encodeURIComponent(slug)}`;
+}
 
         function formatTanggalBeritaBeranda(rawDate) {
             if (!rawDate) return "";
