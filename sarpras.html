@@ -1,0 +1,3452 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIMSARPRAS As'adiyah Ereng-Ereng</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --top-header-bg: linear-gradient(135deg, #256f18 0%, #2e7d1f 55%, #379126 100%);
+      --top-header-border: #1e5b13;
+      --sidebar-bg: linear-gradient(180deg, #27323d 0%, #1e2730 100%);
+      --sidebar-active: linear-gradient(90deg, #1c7ed6 0%, #228be6 100%);
+      --page-bg: #eef2f6;
+      --card-bg: #ffffff;
+      --border-color: #dce3eb;
+      --text-dark: #1f2933;
+      --text-muted: #616e7c;
+      --card-blue: linear-gradient(135deg, #1384c8 0%, #1ba1f2 100%);
+      --card-green: linear-gradient(135deg, #218c3a 0%, #2db84d 100%);
+      --card-red: linear-gradient(135deg, #c92a37 0%, #e03e4b 100%);
+      --card-yellow: linear-gradient(135deg, #e09c08 0%, #f5b727 100%);
+      --banner-yellow: linear-gradient(135deg, #f5b92b 0%, #f9c846 100%);
+      --spotlight-menu: radial-gradient(circle at 22% 50%, rgba(77, 171, 247, 0.34), rgba(46, 125, 31, 0.14) 55%, transparent 78%);
+      --spotlight-btn: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.36), transparent 72%);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: var(--page-bg);
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .icon-svg {
+      width: 17px;
+      height: 17px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+      display: block;
+    }
+    .icon-svg-sm {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+      display: block;
+    }
+    .icon-svg-lg {
+      width: 36px;
+      height: 36px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      display: block;
+    }
+    /* HALAMAN LOGIN SPLIT LAYOUT */
+    @property --a {
+      syntax: '<angle>';
+      inherits: false;
+      initial-value: 0deg;
+    }
+    @keyframes animate {
+      0% { --a: 0deg; }
+      100% { --a: 360deg; }
+    }
+    .login-screen {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: stretch;
+      background-color: #16181d;
+      overflow-x: hidden;
+    }
+    .login-screen.hidden {
+      display: none;
+    }
+    .login-showcase-side {
+      position: relative;
+      flex: 1 1 auto;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background-color: #16181d;
+    }
+    .login-bg-photo {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      filter: saturate(0.95);
+      z-index: 0;
+    }
+    .login-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(12, 15, 20, 0.16) 0%,
+        rgba(14, 17, 23, 0.24) 55%,
+        rgba(12, 14, 19, 0.38) 100%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+    .login-form-side {
+      position: relative;
+      z-index: 2;
+      width: 440px;
+      flex-shrink: 0;
+      min-height: 100vh;
+      background: linear-gradient(180deg, rgba(24, 27, 36, 0.96) 0%, rgba(20, 23, 31, 0.98) 100%);
+      border-left: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      padding: 28px 24px;
+      box-shadow: -12px 0 36px rgba(0, 0, 0, 0.35);
+    }
+    .neon-login-box {
+      position: relative;
+      width: 100%;
+      max-width: 390px;
+      min-height: 445px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: repeating-conic-gradient(
+        from var(--a),
+        rgba(255, 92, 147, 0.72) 0%,
+        rgba(255, 92, 147, 0.72) 4%,
+        transparent 4%,
+        transparent 36%,
+        rgba(255, 92, 147, 0.72) 50%
+      );
+      animation: animate 7s linear infinite;
+      border-radius: 18px;
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.45);
+    }
+    .neon-login-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-conic-gradient(
+        from var(--a),
+        rgba(102, 217, 232, 0.72) 0%,
+        rgba(102, 217, 232, 0.72) 4%,
+        transparent 4%,
+        transparent 36%,
+        rgba(102, 217, 232, 0.72) 50%
+      );
+      animation: animate 7s linear infinite;
+      animation-delay: -1.75s;
+      border-radius: 18px;
+    }
+    .neon-login-box::after {
+      content: '';
+      position: absolute;
+      inset: 2px;
+      background: rgba(36, 39, 50, 0.95);
+      border-radius: 16px;
+      border: 1.5px solid rgba(255, 255, 255, 0.09);
+      z-index: 1;
+    }
+    .login-bottom-badge {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 390px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .neon-login-form {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 13px;
+      z-index: 10;
+      padding: 26px 28px;
+      color: #ffffff;
+    }
+    .neon-brand-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 6px;
+      margin-bottom: 2px;
+    }
+    .neon-logo-wrap {
+      width: 46px;
+      height: 46px;
+      border-radius: 11px;
+      background: rgba(255, 255, 255, 0.94);
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    }
+    .neon-logo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .neon-login-form h2 {
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 1.45rem;
+      letter-spacing: 0.03em;
+      line-height: 1.2;
+    }
+    .neon-subtitle {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.74);
+      font-weight: 400;
+    }
+    .neon-row-2 {
+      width: 90%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .neon-field {
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .neon-row-2 .neon-field {
+      width: 100%;
+    }
+    .neon-field-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.78);
+      letter-spacing: 0.04em;
+    }
+    .neon-dd {
+      position: relative;
+      width: 100%;
+    }
+    .neon-dd-trigger {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 6px;
+      padding: 10px 13px;
+      font-family: "Poppins", sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      cursor: pointer;
+      transition: background-color 0.25s ease, border-color 0.25s ease;
+    }
+    .neon-dd-trigger:hover,
+    .neon-dd.open .neon-dd-trigger {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: rgba(102, 217, 232, 0.45);
+    }
+    .neon-dd-caret {
+      font-size: 0.72rem;
+      color: #66d9e8;
+      transition: transform 0.25s ease;
+    }
+    .neon-dd.open .neon-dd-caret {
+      transform: rotate(180deg);
+    }
+    .neon-dd-menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      right: 0;
+      background: #23232e;
+      border: 1px solid rgba(102, 217, 232, 0.35);
+      border-radius: 8px;
+      padding: 5px;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.55);
+      z-index: 40;
+      opacity: 0;
+      transform: translateY(-6px);
+      visibility: hidden;
+      transition: opacity 0.2s ease, transform 0.22s ease, visibility 0.2s ease;
+    }
+    .neon-dd.open .neon-dd-menu {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+    .neon-dd-option {
+      padding: 8px 11px;
+      border-radius: 5px;
+      font-size: 0.86rem;
+      color: rgba(255, 255, 255, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .neon-dd-option:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #66d9e8;
+    }
+    .neon-dd-option.selected {
+      background: rgba(102, 217, 232, 0.16);
+      color: #66d9e8;
+      font-weight: 600;
+    }
+    .neon-pw-wrap {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+    .neon-login-form input[type="password"],
+    .neon-login-form input[type="text"] {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px 38px 10px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      outline: none;
+      border-radius: 6px;
+      color: #ffffff;
+      font-family: "Poppins", sans-serif;
+      font-size: 0.92rem;
+      letter-spacing: 0.05em;
+      transition: border-color 0.25s ease, background-color 0.25s ease;
+    }
+    .neon-login-form input[type="password"]:focus,
+    .neon-login-form input[type="text"]:focus {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(102, 217, 232, 0.55);
+    }
+    .neon-login-form ::placeholder {
+      color: rgba(255, 255, 255, 0.54);
+    }
+    .neon-eye-btn {
+      position: absolute;
+      right: 10px;
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.72);
+      cursor: pointer;
+      padding: 2px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s ease;
+    }
+    .neon-eye-btn:hover {
+      color: #66d9e8;
+    }
+    .neon-error {
+      display: none;
+      width: 90%;
+      background: rgba(255, 92, 147, 0.2);
+      border: 1px solid rgba(255, 92, 147, 0.65);
+      color: #ffc2d6;
+      border-radius: 6px;
+      padding: 7px 10px;
+      font-size: 0.76rem;
+      text-align: center;
+    }
+    .neon-error.show {
+      display: block;
+    }
+    .neon-login-form input[type="submit"] {
+      width: 90%;
+      padding: 10px 15px;
+      border: none;
+      outline: none;
+      border-radius: 6px;
+      font-family: "Poppins", sans-serif;
+      font-weight: 600;
+      font-size: 0.96rem;
+      letter-spacing: 0.05em;
+      transition: 0.35s;
+      background: #ffffff;
+      color: #262832;
+      cursor: pointer;
+      margin-top: 2px;
+    }
+    .neon-login-form input[type="submit"]:hover {
+      background: #ff5c93;
+      color: #ffffff;
+    }
+    .neon-group {
+      width: 90%;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.72rem;
+      color: rgba(255, 255, 255, 0.74);
+      line-height: 1.45;
+    }
+    /* APLIKASI UTAMA */
+    .app-shell {
+      display: none;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .app-shell.active {
+      display: flex;
+    }
+    .topbar {
+      height: 58px;
+      background: var(--top-header-bg);
+      border-bottom: 1px solid var(--top-header-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      color: #ffffff;
+      box-shadow: 0 3px 12px rgba(18, 45, 14, 0.18);
+    }
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+    .brand-box {
+      width: 248px;
+      height: 100%;
+      background-color: #ffffff;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 0 14px;
+      border-right: 1px solid var(--border-color);
+      flex-shrink: 0;
+    }
+    .brand-logo-img {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+    .brand-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #16281c;
+      letter-spacing: 0.2px;
+    }
+    .brand-sub {
+      font-size: 0.69rem;
+      color: #4f6354;
+      font-weight: 700;
+    }
+    .hamburger-btn {
+      position: relative;
+      overflow: hidden;
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      padding: 0 18px;
+      height: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.22s ease, transform 0.15s ease;
+    }
+    .hamburger-btn::before {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border-radius: 8px;
+      background: var(--spotlight-btn);
+      opacity: 0;
+      transform: scale(0.85);
+      transition: opacity 0.24s ease, transform 0.24s ease;
+      pointer-events: none;
+    }
+    .hamburger-btn:hover::before {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .hamburger-btn:active {
+      transform: scale(0.95);
+    }
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-right: 16px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.35px;
+    }
+    .topbar-logo-img {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #ffffff;
+      padding: 2px;
+      border: 2px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      flex-shrink: 0;
+    }
+    .btn-topbar-logout {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.34);
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-family: "Poppins", sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    }
+    .btn-topbar-logout:hover {
+      background: rgba(255, 255, 255, 0.24);
+      border-color: rgba(255, 255, 255, 0.58);
+      transform: translateY(-1px);
+    }
+    .btn-topbar-logout:active {
+      transform: scale(0.97);
+    }
+    .layout-wrapper {
+      display: flex;
+      flex: 1;
+      min-height: calc(100vh - 58px);
+    }
+    .sidebar {
+      width: 248px;
+      background: var(--sidebar-bg);
+      color: #d6dde5;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: 1px solid rgba(255, 255, 255, 0.06);
+      transition: width 0.24s ease;
+    }
+    .sidebar.collapsed {
+      width: 72px;
+    }
+    .sidebar.collapsed .menu-text,
+    .sidebar.collapsed .menu-section-title,
+    .sidebar.collapsed .semester-pill {
+      display: none;
+    }
+    .sidebar.collapsed .menu-item {
+      justify-content: center;
+      padding: 12px 0;
+      margin: 4px 10px;
+    }
+    .semester-box {
+      padding: 14px 14px 8px;
+    }
+    .semester-pill {
+      background: var(--banner-yellow);
+      color: #1f2429;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 7px 10px;
+      border-radius: 6px;
+      text-align: center;
+      letter-spacing: 0.35px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+    }
+    .menu-list {
+      list-style: none;
+      padding: 4px 0;
+    }
+    .menu-section-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #8f9ead;
+      padding: 14px 18px 6px;
+    }
+    .menu-item {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      margin: 3px 10px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      color: #dce3ea;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: color 0.22s ease, transform 0.2s ease, border-color 0.22s ease, box-shadow 0.24s ease, background-color 0.2s ease;
+    }
+    .menu-item::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--spotlight-menu);
+      opacity: 0;
+      transform: translateX(-12%) scale(0.92);
+      transition: opacity 0.26s ease, transform 0.28s ease;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .menu-item > span,
+    .menu-item > svg {
+      position: relative;
+      z-index: 1;
+    }
+    .menu-item:hover {
+      color: #ffffff;
+      border-color: rgba(116, 192, 252, 0.35);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28), inset 0 0 18px rgba(77, 171, 247, 0.18);
+      transform: translateX(3px);
+    }
+    .menu-item:hover::before {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+    .menu-item:active {
+      transform: translateX(2px) scale(0.98);
+    }
+    .menu-item.active {
+      background: var(--sidebar-active);
+      color: #ffffff;
+      font-weight: 600;
+      border-color: rgba(255, 255, 255, 0.28);
+      box-shadow: 0 6px 16px rgba(28, 126, 214, 0.42);
+    }
+    .menu-item.active::before {
+      background: radial-gradient(circle at 25% 50%, rgba(255, 255, 255, 0.28), transparent 72%);
+      opacity: 1;
+      transform: none;
+    }
+    .logout-item {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: #e2e8f0;
+      font-weight: 500;
+    }
+    .logout-item::before {
+      background: radial-gradient(circle at 22% 50%, rgba(255, 255, 255, 0.14), transparent 75%);
+    }
+    .logout-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.26);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
+    }
+    .sidebar-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 4px;
+    }
+    .sidebar-footer {
+      position: relative;
+      overflow: hidden;
+      padding: 11px 18px;
+      margin: 6px 10px 8px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      color: #9aa7b4;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: color 0.22s ease, background-color 0.22s ease;
+    }
+    .sidebar-footer:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.07);
+    }
+    .main-content {
+      flex: 1;
+      padding: 20px 24px 40px;
+      overflow-x: hidden;
+    }
+    .page-header-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .page-title {
+      font-size: 1.52rem;
+      font-weight: 700;
+      color: #1a2430;
+    }
+    .breadcrumb {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .breadcrumb a {
+      color: #1c7ed6;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    /* LAYOUT DASHBOARD: KARTU PENGELOLA KIRI + 4 KARTU & TABEL KANAN */
+    .dashboard-split-grid {
+      display: grid;
+      grid-template-columns: 330px minmax(0, 1fr);
+      gap: 20px;
+      align-items: stretch;
+    }
+    .pengelola-left-col {
+      display: flex;
+      align-items: stretch;
+    }
+    .pengelola-poster-card {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, #0d4a28 0%, #136136 100%);
+      border: 1px solid #cbd5e1;
+      border-radius: 14px;
+      padding: 12px;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pengelola-poster-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 460px;
+      max-height: 680px;
+      object-fit: contain;
+      border-radius: 10px;
+      display: block;
+    }
+    .dashboard-right-col {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      min-width: 0;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .stat-card {
+      border-radius: 10px;
+      color: #ffffff;
+      overflow: hidden;
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.14);
+    }
+    .stat-card.blue { background: var(--card-blue); }
+    .stat-card.green { background: var(--card-green); }
+    .stat-card.red { background: var(--card-red); }
+    .stat-card.yellow { background: var(--card-yellow); }
+    .stat-body {
+      padding: 14px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+    .stat-value {
+      font-size: 1.85rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.35px;
+      opacity: 0.95;
+    }
+    .stat-icon {
+      opacity: 0.34;
+    }
+    .stat-footer {
+      position: relative;
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0.14);
+      padding: 7px 14px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: background-color 0.22s ease;
+    }
+    .stat-footer::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--spotlight-btn);
+      opacity: 0;
+      transition: opacity 0.24s ease;
+      pointer-events: none;
+    }
+    .stat-footer:hover::before {
+      opacity: 1;
+    }
+    .table-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+    }
+    .dashboard-right-col .table-card {
+      flex: 1;
+      margin-bottom: 0;
+    }
+    .table-card-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #1f2933;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .form-group label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #323f4b;
+    }
+    .form-group input,
+    .form-group select {
+      padding: 8px 10px;
+      border: 1px solid #cbd2d9;
+      border-radius: 6px;
+      font-family: "Poppins", sans-serif;
+      font-size: 0.84rem;
+      color: var(--text-dark);
+      background: #ffffff;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #1c7ed6;
+      box-shadow: 0 0 0 3px rgba(28, 126, 214, 0.16);
+    }
+    .form-group select:disabled,
+    .form-group input:disabled {
+      background-color: #f1f5f9;
+      color: #829ab1;
+      cursor: not-allowed;
+    }
+    .bagian-sarana-box {
+      display: flex;
+      gap: 6px;
+      align-items: stretch;
+    }
+    .bagian-sarana-box select {
+      flex: 1;
+      min-width: 0;
+    }
+    .btn-tambah-bagian {
+      background: linear-gradient(135deg, #1864ab 0%, #1c7ed6 100%);
+      color: #ffffff;
+      border: 1px solid #14528c;
+      border-radius: 6px;
+      padding: 0 11px;
+      font-family: "Poppins", sans-serif;
+      font-size: 0.76rem;
+      font-weight: 700;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: transform 0.16s ease, box-shadow 0.2s ease;
+    }
+    .btn-tambah-bagian:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(28, 126, 214, 0.32);
+    }
+    .btn-tambah-bagian:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .panel-tambah-bagian {
+      display: none;
+      background: #f8fafc;
+      border: 1px dashed #9fb3c8;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 14px;
+    }
+    .panel-tambah-bagian.open {
+      display: block;
+    }
+    .panel-tambah-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: flex-end;
+    }
+    .panel-tambah-grid .form-group {
+      flex: 1;
+      min-width: 220px;
+    }
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      padding-top: 4px;
+    }
+    .btn-simpan,
+    .btn-excel,
+    .btn-preview,
+    .btn-batal,
+    .btn-hapus-row {
+      position: relative;
+      overflow: hidden;
+      border-radius: 7px;
+      font-family: "Poppins", sans-serif;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.24s ease, filter 0.2s ease;
+    }
+    .btn-simpan::before,
+    .btn-excel::before,
+    .btn-preview::before,
+    .btn-batal::before,
+    .btn-hapus-row::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: var(--spotlight-btn);
+      opacity: 0;
+      transform: scale(0.75);
+      transition: opacity 0.24s ease, transform 0.26s ease;
+      pointer-events: none;
+    }
+    .btn-simpan:hover::before,
+    .btn-excel:hover::before,
+    .btn-preview:hover::before,
+    .btn-batal:hover::before,
+    .btn-hapus-row:hover::before {
+      opacity: 1;
+      transform: scale(1.08);
+    }
+    .btn-simpan:active,
+    .btn-excel:active,
+    .btn-preview:active,
+    .btn-batal:active,
+    .btn-hapus-row:active {
+      transform: scale(0.97);
+    }
+    .btn-simpan {
+      background: linear-gradient(135deg, #256f18 0%, #2e7d1f 100%);
+      color: #ffffff;
+      border: 1px solid #1e5b13;
+      padding: 8px 18px;
+      font-size: 0.84rem;
+      box-shadow: 0 4px 12px rgba(46, 125, 31, 0.24);
+    }
+    .btn-simpan:hover {
+      box-shadow: 0 6px 18px rgba(46, 125, 31, 0.42), 0 0 14px rgba(81, 207, 102, 0.35);
+      transform: translateY(-1px);
+    }
+    .btn-excel {
+      background: linear-gradient(135deg, #19692c 0%, #238c3c 100%);
+      color: #ffffff;
+      border: 1px solid #145523;
+      padding: 7px 14px;
+      font-size: 0.82rem;
+      box-shadow: 0 4px 12px rgba(35, 140, 60, 0.24);
+    }
+    .btn-excel:hover:not(:disabled) {
+      box-shadow: 0 6px 18px rgba(35, 140, 60, 0.42), 0 0 14px rgba(64, 192, 87, 0.35);
+      transform: translateY(-1px);
+    }
+    .btn-excel:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+    .btn-preview {
+      background: linear-gradient(135deg, #1864ab 0%, #1c7ed6 100%);
+      color: #ffffff;
+      border: 1px solid #14528c;
+      padding: 7px 14px;
+      font-size: 0.82rem;
+      box-shadow: 0 4px 12px rgba(28, 126, 214, 0.24);
+    }
+    .btn-preview:hover {
+      box-shadow: 0 6px 18px rgba(28, 126, 214, 0.42), 0 0 14px rgba(77, 171, 247, 0.38);
+      transform: translateY(-1px);
+    }
+    .btn-batal {
+      background: linear-gradient(135deg, #52606d 0%, #6c757d 100%);
+      color: #ffffff;
+      border: none;
+      padding: 8px 16px;
+      font-size: 0.84rem;
+    }
+    .btn-batal:hover {
+      box-shadow: 0 5px 14px rgba(82, 96, 109, 0.35);
+      transform: translateY(-1px);
+    }
+    .btn-hapus-row {
+      background: linear-gradient(135deg, #c92a37 0%, #dc3545 100%);
+      color: #ffffff;
+      border: none;
+      padding: 5px 10px;
+      font-size: 0.75rem;
+      box-shadow: 0 2px 8px rgba(220, 53, 69, 0.22);
+    }
+    .btn-hapus-row:hover {
+      box-shadow: 0 5px 14px rgba(220, 53, 69, 0.42);
+      transform: translateY(-1px);
+    }
+    .catatan-kecil {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-left: auto;
+    }
+    .btn-group-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-left: auto;
+    }
+    .table-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .table-controls-right {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+    .filter-inline {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .table-controls select,
+    .table-controls input {
+      padding: 6px 10px;
+      border: 1px solid #cbd2d9;
+      border-radius: 6px;
+      font-family: "Poppins", sans-serif;
+      font-size: 0.84rem;
+      color: var(--text-dark);
+      background: #ffffff;
+    }
+    .table-controls select:focus,
+    .table-controls input:focus {
+      outline: none;
+      border-color: #1c7ed6;
+      box-shadow: 0 0 0 3px rgba(28, 126, 214, 0.14);
+    }
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid #e4e7eb;
+      border-radius: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+      min-width: 560px;
+    }
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #edf0f4;
+      text-align: left;
+      white-space: nowrap;
+    }
+    th {
+      background-color: #f8fafc;
+      font-weight: 700;
+      color: #323f4b;
+    }
+    tbody tr:hover {
+      background-color: #f4f8fc;
+    }
+    tr.row-kelompok-utama td {
+      background: linear-gradient(90deg, #e7f5e8 0%, #f1f8f2 100%);
+      color: #164b12;
+      font-weight: 800;
+      font-size: 0.9rem;
+      border-top: 2px solid #2e7d1f;
+      border-bottom: 1px solid #b7dfb9;
+    }
+    tr.row-sub-bagian td {
+      background-color: #eef4fb;
+      color: #184e77;
+      font-weight: 700;
+      font-size: 0.85rem;
+      border-bottom: 1px solid #cfe2f3;
+    }
+    tr.row-kosong-bagian td {
+      color: #7b8794;
+      font-style: italic;
+      background-color: #fafbfc;
+    }
+    .text-center { text-align: center; }
+    .text-right { text-align: right; }
+    .badge-status {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+    .badge-baik { background: #d3f9d8; color: #1b5e20; }
+    .badge-rusak { background: #ffe3e3; color: #a61e2a; }
+    .badge-proses { background: #fff3bf; color: #7c5800; }
+    .view-section {
+      display: none;
+    }
+    .view-section.active {
+      display: block;
+    }
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.58);
+      backdrop-filter: blur(2px);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-backdrop.open {
+      display: flex;
+    }
+    .modal-box {
+      background: #ffffff;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 1080px;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+      overflow: hidden;
+    }
+    .modal-header {
+      background: var(--top-header-bg);
+      color: #ffffff;
+      padding: 13px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .modal-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+    }
+    .modal-close {
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      font-size: 1.35rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0 6px;
+    }
+    .modal-body {
+      padding: 18px;
+      overflow: auto;
+      flex: 1;
+    }
+    .preview-sheet-title {
+      text-align: center;
+      font-weight: 800;
+      font-size: 1.06rem;
+      margin-bottom: 4px;
+    }
+    .preview-sheet-sub {
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .preview-table th {
+      background: #f5e600;
+      color: #111827;
+      border: 1px solid #374151;
+    }
+    .preview-table td {
+      border: 1px solid #ced4da;
+    }
+    .preview-total-row td {
+      background: #f1f3f5;
+      font-weight: 700;
+      border: 1px solid #adb5bd;
+    }
+    .preview-info-note {
+      margin-top: 12px;
+      padding: 9px 13px;
+      border-radius: 8px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      font-size: 0.8rem;
+      color: #1e3a8a;
+    }
+    .modal-footer {
+      padding: 12px 18px;
+      border-top: 1px solid var(--border-color);
+      background: #f8fafc;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    .confirm-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(3px);
+      z-index: 1200;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .confirm-backdrop.open {
+      display: flex;
+    }
+    .confirm-card {
+      width: 100%;
+      max-width: 400px;
+      background: #ffffff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.32);
+      border: 1px solid #e4e7eb;
+    }
+    .confirm-top {
+      background: linear-gradient(135deg, #27323d 0%, #1e2730 100%);
+      color: #ffffff;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .confirm-top.danger {
+      background: linear-gradient(135deg, #9e1b26 0%, #c92a37 100%);
+    }
+    .confirm-heading {
+      font-size: 0.94rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .confirm-body {
+      padding: 20px 20px 14px;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: #2c353d;
+    }
+    .confirm-actions {
+      padding: 12px 20px 18px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    @media (max-width: 1280px) {
+      .dashboard-split-grid {
+        grid-template-columns: 300px minmax(0, 1fr);
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 1100px) {
+      .form-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 992px) {
+      .dashboard-split-grid {
+        grid-template-columns: 1fr;
+      }
+      .pengelola-poster-card img {
+        min-height: 360px;
+        max-height: 520px;
+      }
+      .login-screen { flex-direction: column; }
+      .login-showcase-side {
+        width: 100%;
+        min-height: 300px;
+        flex: none;
+      }
+      .login-form-side {
+        width: 100%;
+        min-height: auto;
+        flex: 1;
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.35);
+      }
+    }
+    @media (max-width: 768px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .topbar-right span.topbar-text-lembaga { display: none; }
+    }
+    @media (max-width: 480px) {
+      .login-form-side { padding: 20px 14px 28px; }
+      .neon-login-form { padding: 24px 20px; }
+      .neon-row-2 { grid-template-columns: 1fr; gap: 12px; }
+      .login-bottom-badge { font-size: 0.66rem; padding: 7px 14px; letter-spacing: 0.06em; }
+    }
+/* =========================================================
+   EFEK MENGAMBANG & BAYANGAN MODERN (4 KARTU & PENGELOLA)
+   ========================================================= */
+.dashboard-split-grid,
+.pengelola-left-col,
+.dashboard-right-col,
+.stats-grid {
+  overflow: visible !important;
+}
+.pengelola-poster-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #0d4a28 0%, #136136 100%);
+  border: 1px solid rgba(203, 213, 225, 0.9);
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow:
+    0 10px 24px rgba(15, 23, 42, 0.10),
+    0 2px 6px rgba(15, 23, 42, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.32s ease;
+  will-change: transform, box-shadow;
+}
+.pengelola-poster-card:hover {
+  z-index: 20;
+  transform: translateY(-8px) scale(1.025);
+  border-color: rgba(46, 125, 31, 0.45);
+  box-shadow:
+    0 24px 46px rgba(15, 23, 42, 0.22),
+    0 10px 20px rgba(19, 97, 54, 0.16);
+}
+.stat-card {
+  position: relative;
+  z-index: 1;
+  border-radius: 14px;
+  color: #ffffff;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow:
+    0 8px 20px rgba(15, 23, 42, 0.10),
+    0 2px 6px rgba(15, 23, 42, 0.05);
+  transition:
+    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.32s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  will-change: transform, box-shadow;
+}
+.stat-card:hover {
+  z-index: 20;
+  transform: translateY(-9px) scale(1.045);
+  filter: brightness(1.03);
+  box-shadow:
+    0 24px 44px rgba(15, 23, 42, 0.24),
+    0 10px 18px rgba(15, 23, 42, 0.14);
+}
+  </style>
+</head>
+<body>
+  <!-- HALAMAN LOGIN SPLIT LAYOUT -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-showcase-side">
+      <div class="login-bg-photo" id="loginBgPhoto"></div>
+      <div class="login-bg-overlay"></div>
+    </div>
+    <div class="login-form-side">
+      <div class="neon-login-box">
+        <form class="neon-login-form" id="formLogin" onsubmit="prosesLogin(event)">
+          <div class="neon-brand-header">
+            <div class="neon-logo-wrap">
+              <img class="logo-aser-img" src="logoaser-sarpras" alt="Logo As'adiyah Ereng-Ereng" />
+            </div>
+            <h2>Login</h2>
+            <div class="neon-subtitle">SIMSARPRAS As'adiyah Ereng-Ereng</div>
+          </div>
+          <div class="neon-row-2">
+            <div class="neon-field">
+              <span class="neon-field-label">Jenjang</span>
+              <div class="neon-dd" id="ddJenjang">
+                <button type="button" class="neon-dd-trigger" onclick="bukaTutupDd(event, 'ddJenjang')">
+                  <span id="labelJenjangLogin">MA</span>
+                  <span class="neon-dd-caret">&#9662;</span>
+                </button>
+                <div class="neon-dd-menu" id="menuJenjangLogin">
+                  <div class="neon-dd-option selected" data-val="MA" onclick="pilihJenjangLogin('MA')">
+                    <span>MA</span>
+                    <span>&#10003;</span>
+                  </div>
+                  <div class="neon-dd-option" data-val="MTs" onclick="pilihJenjangLogin('MTs')">
+                    <span>MTs</span>
+                    <span>&#10003;</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="neon-field">
+              <span class="neon-field-label">Tahun</span>
+              <div class="neon-dd" id="ddTahun">
+                <button type="button" class="neon-dd-trigger" onclick="bukaTutupDd(event, 'ddTahun')">
+                  <span id="labelTahunLogin">2026</span>
+                  <span class="neon-dd-caret">&#9662;</span>
+                </button>
+                <div class="neon-dd-menu" id="menuTahunLogin"></div>
+              </div>
+            </div>
+          </div>
+          <div class="neon-field">
+            <label for="loginPassword" class="neon-field-label">Password</label>
+            <div class="neon-pw-wrap">
+              <input type="password" id="loginPassword" placeholder="Password" required />
+              <button type="button" class="neon-eye-btn" id="btnTogglePw" onclick="togglePassword()" title="Lihat / Sembunyikan Password" aria-label="Lihat / Sembunyikan Password">
+                <svg class="icon-svg" viewBox="0 0 24 24">
+                  <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="neon-error" id="loginError">Password salah. Silakan periksa kembali password Anda.</div>
+          <input type="submit" value="Login" />
+          <div class="neon-group">
+            <span>Data tersimpan terpisah per jenjang &amp; tahun, otomatis melanjutkan data tahun sebelumnya jika belum ada</span>
+          </div>
+        </form>
+      </div>
+      <div class="login-bottom-badge">SIMSARPRAS PONPES AS'ADIYAH ERENG-ERENG</div>
+    </div>
+  </div>
+  <!-- APLIKASI UTAMA -->
+  <div class="app-shell" id="appShell">
+    <header class="topbar">
+      <div class="topbar-left">
+        <div class="brand-box">
+          <img src="logoaser-sarpras" alt="Logo As'adiyah Ereng-Ereng" class="brand-logo-img logo-aser-img" />
+          <div>
+            <div class="brand-title">SIMSARPRAS</div>
+            <div class="brand-sub" id="brandLembaga">MA.As'adiyah Ereng-Ereng</div>
+          </div>
+        </div>
+        <button class="hamburger-btn" id="btnToggle" type="button" title="Toggle Menu" aria-label="Toggle Menu">
+          <svg class="icon-svg" viewBox="0 0 24 24">
+            <line x1="4" y1="6" x2="20" y2="6"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="18" x2="20" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="topbar-right">
+        <span class="topbar-text-lembaga" id="topbarLembaga">MA.As'adiyah Ereng-Ereng</span>
+        <img src="logoaser-sarpras" alt="Logo As'adiyah Ereng-Ereng" class="topbar-logo-img logo-aser-img" />
+        <button type="button" class="btn-topbar-logout" onclick="klikLogout()" title="Keluar / Ganti Jenjang atau Tahun">
+          <svg class="icon-svg-sm" viewBox="0 0 24 24">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+          <span>Logout</span>
+        </button>
+      </div>
+    </header>
+    <div class="layout-wrapper">
+      <aside class="sidebar" id="sidebar">
+        <div>
+          <div class="semester-box">
+            <div class="semester-pill" id="pillTahunAktif">TAHUN DATA 2026</div>
+          </div>
+          <ul class="menu-list">
+            <li class="menu-item active" onclick="pindahMenu('view-dashboard', 'Dashboard', this)">
+              <svg class="icon-svg" viewBox="0 0 24 24">
+                <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+                <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+                <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+                <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+              </svg>
+              <span class="menu-text">Dashboard</span>
+            </li>
+            <li class="menu-section-title">Pengelolaan Sarpras</li>
+            <li class="menu-item" onclick="pindahMenu('view-inventaris', 'Inventaris Barang', this)">
+              <svg class="icon-svg" viewBox="0 0 24 24">
+                <path d="M21 8l-9-5-9 5 9 5 9-5Z"></path>
+                <path d="M3 8v8l9 5 9-5V8"></path>
+                <path d="M12 13v8"></path>
+              </svg>
+              <span class="menu-text">Inventaris Barang</span>
+            </li>
+            <li class="menu-item" onclick="pindahMenu('view-pemeliharaan', 'Pemeliharaan Sarpras', this)">
+              <svg class="icon-svg" viewBox="0 0 24 24">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"></path>
+              </svg>
+              <span class="menu-text">Pemeliharaan Sarpras</span>
+            </li>
+            <li class="menu-section-title">Akun</li>
+            <li class="menu-item logout-item" onclick="klikLogout()">
+              <svg class="icon-svg" viewBox="0 0 24 24">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                <polyline points="16 17 21 12 16 7"></polyline>
+                <line x1="21" y1="12" x2="9" y2="12"></line>
+              </svg>
+              <span class="menu-text">Logout / Ganti Tahun</span>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-bottom">
+          <div class="sidebar-footer" onclick="document.getElementById('sidebar').classList.toggle('collapsed')" title="Perkecil / Perlebar Sidebar">
+            <span class="menu-text">SIMSARPRAS v1.0</span>
+            <svg class="icon-svg-sm" viewBox="0 0 24 24">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </div>
+        </div>
+      </aside>
+      <main class="main-content">
+        <div class="page-header-row">
+          <h1 class="page-title" id="judulHalaman">Dashboard</h1>
+          <div class="breadcrumb">
+            <a href="#dashboard">Home</a> / <span id="teksJenjangBreadcrumb">MA.As'adiyah Ereng-Ereng</span> / <strong>Tahun <span class="tahun-aktif-dinamis">2026</span></strong> / <span id="teksBreadcrumb">Dashboard</span>
+          </div>
+        </div>
+        <!-- DASHBOARD -->
+        <section class="view-section active" id="view-dashboard">
+          <div class="dashboard-split-grid">
+            <div class="pengelola-left-col" id="bingkaiPengelola">
+              <div class="pengelola-poster-card">
+                <img id="imgKartuPengelola" src="Pengelola-sarpras.png" alt="Kartu Pengelola SIMSARPRAS - Fahrir, S.Pd" />
+              </div>
+            </div>
+            <div class="dashboard-right-col">
+              <div class="stats-grid">
+                <div class="stat-card blue">
+                  <div class="stat-body">
+                    <div>
+                      <div class="stat-value" id="statJenisBarang">0</div>
+                      <div class="stat-label">Jenis Barang</div>
+                    </div>
+                    <div class="stat-icon">
+                      <svg class="icon-svg-lg" viewBox="0 0 24 24">
+                        <path d="M21 8l-9-5-9 5 9 5 9-5Z"></path>
+                        <path d="M3 8v8l9 5 9-5V8"></path>
+                        <path d="M12 13v8"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="stat-footer" onclick="pindahKeMenuById('view-inventaris', 'Inventaris Barang')">
+                    <span>Lihat Inventaris</span>
+                    <svg class="icon-svg-sm" viewBox="0 0 24 24">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </div>
+                </div>
+                <div class="stat-card green">
+                  <div class="stat-body">
+                    <div>
+                      <div class="stat-value" id="statKeadaanBaik">0</div>
+                      <div class="stat-label">Keadaan Baik</div>
+                    </div>
+                    <div class="stat-icon">
+                      <svg class="icon-svg-lg" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="9"></circle>
+                        <polyline points="8.5 12.5 11 15 16 9.5"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="stat-footer" onclick="pindahKeMenuById('view-inventaris', 'Inventaris Barang')">
+                    <span>Detail Kondisi</span>
+                    <svg class="icon-svg-sm" viewBox="0 0 24 24">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </div>
+                </div>
+                <div class="stat-card red">
+                  <div class="stat-body">
+                    <div>
+                      <div class="stat-value" id="statBarangRusak">0</div>
+                      <div class="stat-label">Barang Rusak</div>
+                    </div>
+                    <div class="stat-icon">
+                      <svg class="icon-svg-lg" viewBox="0 0 24 24">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"></path>
+                        <line x1="12" y1="9" x2="12" y2="13"></line>
+                        <circle cx="12" cy="17" r="1"></circle>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="stat-footer" onclick="pindahKeMenuById('view-pemeliharaan', 'Pemeliharaan Sarpras')">
+                    <span>Cek Pemeliharaan</span>
+                    <svg class="icon-svg-sm" viewBox="0 0 24 24">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </div>
+                </div>
+                <div class="stat-card yellow">
+                  <div class="stat-body">
+                    <div>
+                      <div class="stat-value" id="statJadwalPemeliharaan">0</div>
+                      <div class="stat-label">Item Pemeliharaan</div>
+                    </div>
+                    <div class="stat-icon">
+                      <svg class="icon-svg-lg" viewBox="0 0 24 24">
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="stat-footer" onclick="pindahKeMenuById('view-pemeliharaan', 'Pemeliharaan Sarpras')">
+                    <span>Kelola Pemeliharaan</span>
+                    <svg class="icon-svg-sm" viewBox="0 0 24 24">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div class="table-card">
+                <div class="table-card-title">
+                  <span>Aktivitas Terbaru — <span class="nama-lembaga-dinamis">MA.As'adiyah Ereng-Ereng</span> (Tahun <span class="tahun-aktif-dinamis">2026</span>)</span>
+                </div>
+                <div class="table-controls">
+                  <div>
+                    Show
+                    <select>
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                    </select>
+                    entries
+                  </div>
+                  <div>
+                    Search: <input type="text" placeholder="Cari aktivitas..." />
+                  </div>
+                </div>
+                <div class="table-responsive">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>User</th>
+                        <th>Modul</th>
+                        <th>Aktivitas</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tbodyAktivitas"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- INVENTARIS BARANG -->
+        <section class="view-section" id="view-inventaris">
+          <div class="table-card">
+            <div class="table-card-title">
+              <span>Form Input Inventaris Barang - <span class="nama-lembaga-dinamis">MA.As'adiyah Ereng-Ereng</span> (Tahun <span class="tahun-aktif-dinamis">2026</span>)</span>
+            </div>
+            <div class="panel-tambah-bagian" id="panelTambahBagian">
+              <div class="panel-tambah-grid">
+                <div class="form-group">
+                  <label for="inputNamaBagianBaru">Nama Bagian Sarana Baru (otomatis diberi huruf urut berikutnya)</label>
+                  <input type="text" id="inputNamaBagianBaru" placeholder="cth: Ruang Multimedia / Laboratorium IPA" />
+                </div>
+                <button type="button" class="btn-simpan" onclick="simpanBagianSaranaBaru()">Simpan Bagian</button>
+                <button type="button" class="btn-batal" onclick="togglePanelTambahBagian(false)">Tutup</button>
+              </div>
+            </div>
+            <form id="formInventaris" onsubmit="tambahInventaris(event)">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="invKelompok">Kelompok Utama</label>
+                  <select id="invKelompok" onchange="saatKelompokBerubah()">
+                    <option value="PRASARANA">1. PRASARANA</option>
+                    <option value="SARANA" selected>2. SARANA</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="invBagianSarana">Bagian Sarana</label>
+                  <div class="bagian-sarana-box">
+                    <select id="invBagianSarana"></select>
+                    <button type="button" class="btn-tambah-bagian" id="btnBukaTambahBagian" onclick="togglePanelTambahBagian()">+ Bagian</button>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="invNama">Nama Inventaris</label>
+                  <input type="text" id="invNama" placeholder="cth: Kursi Peserta Didik" required />
+                </div>
+                <div class="form-group">
+                  <label for="invThn">Tahun Pengadaan</label>
+                  <input type="number" id="invThn" min="1990" max="2100" required />
+                </div>
+                <div class="form-group">
+                  <label for="invQty">Jumlah Barang</label>
+                  <input type="number" id="invQty" min="1" value="1" required />
+                </div>
+                <div class="form-group">
+                  <label for="invKode">Kode Barang</label>
+                  <input type="text" id="invKode" placeholder="cth: A.001" required />
+                </div>
+                <div class="form-group">
+                  <label for="invSumber">Sumber Barang</label>
+                  <select id="invSumber">
+                    <option value="Gratis">Gratis</option>
+                    <option value="BOS">BOS</option>
+                    <option value="Ponpes">Ponpes</option>
+                    <option value="Hibah / Bantuan">Hibah / Bantuan</option>
+                    <option value="Swadaya">Swadaya</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="invKeadaan">Keadaan Barang</label>
+                  <select id="invKeadaan">
+                    <option value="Baik">Baik</option>
+                    <option value="Rusak Ringan">Rusak Ringan</option>
+                    <option value="Rusak Berat">Rusak Berat</option>
+                  </select>
+                </div>
+                <div class="form-group" style="grid-column: span 2;">
+                  <label for="invKet">Keterangan</label>
+                  <input type="text" id="invKet" placeholder="cth: Ruang kelas / kondisi terawat" />
+                </div>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn-simpan">Simpan Data</button>
+                <span class="catatan-kecil">Nomor urut otomatis per bagian • <strong class="nama-lembaga-dinamis">MA.As'adiyah Ereng-Ereng</strong> — Tahun <strong class="tahun-aktif-dinamis">2026</strong></span>
+              </div>
+            </form>
+          </div>
+          <div class="table-card">
+            <div class="table-card-title">
+              <span>Buku Inventaris Barang - <span class="nama-lembaga-dinamis">MA.As'adiyah Ereng-Ereng</span> (Tahun <span class="tahun-aktif-dinamis">2026</span>)</span>
+              <div class="btn-group-actions">
+                <button type="button" class="btn-preview" onclick="bukaPreviewInventaris()">
+                  <svg class="icon-svg-sm" viewBox="0 0 24 24">
+                    <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  <span>Preview Excel</span>
+                </button>
+                <button type="button" class="btn-excel" id="btnDownloadInventaris" onclick="downloadExcelInventaris()" title="Unduh file Excel (menampilkan preview terlebih dahulu jika belum dicek)">
+                  <svg class="icon-svg-sm" viewBox="0 0 24 24">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  <span>Download Inventaris (Excel)</span>
+                </button>
+              </div>
+            </div>
+            <div class="table-controls">
+              <div class="filter-inline">
+                <label for="filterBagianInventaris"><strong>Tampilkan Bagian:</strong></label>
+                <select id="filterBagianInventaris" onchange="saatFilterBagianBerubah()"></select>
+              </div>
+              <div class="table-controls-right">
+                <div>
+                  Search: <input id="cariInventaris" type="text" onkeyup="renderInventaris()" placeholder="Cari barang / sumber..." />
+                </div>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table id="tabelInventaris">
+                <thead>
+                  <tr>
+                    <th style="width:60px;" class="text-center">No</th>
+                    <th>Nama Inventaris</th>
+                    <th class="text-center">Tahun Pengadaan</th>
+                    <th class="text-center">Jumlah Barang</th>
+                    <th>Kode Barang</th>
+                    <th>Sumber Barang</th>
+                    <th>Keadaan Barang</th>
+                    <th>Keterangan</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="tbodyInventaris"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+        <!-- PEMELIHARAAN SARPRAS (FORMAT BUKU PEMELIHARAAN 7 KOLOM) -->
+        <section class="view-section" id="view-pemeliharaan">
+          <div class="table-card">
+            <div class="table-card-title">
+              <span>Form Input Buku Pemeliharaan Sarana dan Prasarana (7 Kolom) - <span class="nama-lembaga-dinamis">MA.As'adiyah Ereng-Ereng</span> (Tahun <span class="tahun-aktif-dinamis">2026</span>)</span>
+            </div>
+            <form id="formPemeliharaan" onsubmit="tambahPemeliharaan(event)">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="pmNama">Nama Barang / Fasilitas</label>
+                  <input type="text" id="pmNama" placeholder="cth: Ruang Kelas (Lantai, Dinding, Jendela)" required />
+                </div>
+                <div class="form-group">
+                  <label for="pmKodeLokasi">Kode / Lokasi</label>
+                  <input type="text" id="pmKodeLokasi" placeholder="cth: RK-01 s.d. RK-12" required />
+                </div>
+                <div class="form-group">
+                  <label for="pmJenis">Jenis Pemeliharaan</label>
+                  <input type="text" id="pmJenis" placeholder="cth: Pembersihan harian & cek kaca/engsel" required />
+                </div>
+                <div class="form-group">
+                  <label for="pmFrekuensi">Frekuensi / Jadwal</label>
+                  <input type="text" id="pmFrekuensi" placeholder="cth: Harian / Bulanan" required />
+                </div>
+                <div class="form-group">
+                  <label for="pmPenanggungJawab">Penanggung Jawab</label>
+                  <input type="text" id="pmPenanggungJawab" placeholder="cth: Petugas Kebersihan & Wali Kelas" required />
+                </div>
+                <div class="form-group" style="grid-column: span 3;">
+                  <label for="pmKeterangan">Keterangan / Kondisi</label>
+                  <input type="text" id="pmKeterangan" placeholder="cth: Baik & bersih" />
+                </div>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn-simpan">Simpan Data</button>
+                <span class="catatan-kecil">Nomor urut otomatis • <strong class="nama-lembaga-dinamis">MA.As'adiyah Ereng-Ereng</strong> — Tahun <strong class="tahun-aktif-dinamis">2026</strong></span>
+              </div>
+            </form>
+          </div>
+          <div class="table-card">
+            <div class="table-card-title">
+              <span>Buku Pemeliharaan Sarana dan Prasarana - <span class="nama-lembaga-dinamis">MA.As'adiyah Ereng-Ereng</span> (Tahun <span class="tahun-aktif-dinamis">2026</span>)</span>
+              <div class="btn-group-actions">
+                <button type="button" class="btn-preview" onclick="bukaPreviewPemeliharaan()">
+                  <svg class="icon-svg-sm" viewBox="0 0 24 24">
+                    <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  <span>Preview Excel</span>
+                </button>
+                <button type="button" class="btn-excel" onclick="downloadExcelPemeliharaan()">
+                  <svg class="icon-svg-sm" viewBox="0 0 24 24">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  <span>Download Pemeliharaan (Excel)</span>
+                </button>
+              </div>
+            </div>
+            <div class="table-controls">
+              <div>
+                Show
+                <select>
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                </select>
+                entries
+              </div>
+              <div>
+                Search: <input id="cariPemeliharaan" type="text" onkeyup="renderPemeliharaan()" placeholder="Cari barang / lokasi / penanggung jawab..." />
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table id="tabelPemeliharaan">
+                <thead>
+                  <tr>
+                    <th style="width:60px;" class="text-center">No</th>
+                    <th>Nama Barang / Fasilitas</th>
+                    <th>Kode / Lokasi</th>
+                    <th>Jenis Pemeliharaan</th>
+                    <th>Frekuensi / Jadwal</th>
+                    <th>Penanggung Jawab</th>
+                    <th>Keterangan / Kondisi</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="tbodyPemeliharaan"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <!-- MODAL PREVIEW SEBELUM DOWNLOAD -->
+  <div class="modal-backdrop" id="modalPreview">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title" id="modalJudul">Preview Laporan Excel</div>
+        <button type="button" class="modal-close" onclick="tutupPreview()">&times;</button>
+      </div>
+      <div class="modal-body" id="modalIsiPreview"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn-batal" onclick="tutupPreview()">Tutup</button>
+        <button type="button" class="btn-excel" id="btnUnduhDariModal">
+          <svg class="icon-svg-sm" viewBox="0 0 24 24">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span>Unduh File (.xls)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL KONFIRMASI MODERN -->
+  <div class="confirm-backdrop" id="modalConfirm">
+    <div class="confirm-card">
+      <div class="confirm-top" id="confirmTop">
+        <div class="confirm-heading" id="confirmJudul">Konfirmasi</div>
+        <button type="button" class="modal-close" onclick="tutupConfirm(false)">&times;</button>
+      </div>
+      <div class="confirm-body" id="confirmPesan">Apakah Anda yakin?</div>
+      <div class="confirm-actions">
+        <button type="button" class="btn-batal" onclick="tutupConfirm(false)">Batal</button>
+        <button type="button" class="btn-simpan" id="btnKonfirmasiYa" onclick="tutupConfirm(true)">Ya, Lanjutkan</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    var PASSWORD_BENAR = "Admin123";
+    var jenjangLoginPilihan = "MA";
+    var tahunLoginPilihan = "2026";
+    var jenjangAktif = "MA";
+    var tahunAktif = "2026";
+    var dataInventaris = [];
+    var daftarBagianSarana = [];
+    var dataPemeliharaan = [];
+    var aksiUnduhAktif = null;
+    var callbackKonfirmasi = null;
+    var previewInventarisSudahDicek = false;
+    var BAGIAN_SARANA_BAWAAN = [
+      "A. Ruang Kelas",
+      "B. Ruang Guru",
+      "C. Ruang Kamad",
+      "D. Ruang TU",
+      "E. Ruang UKS",
+      "F. Ruang Konseling",
+      "G. Tempat Ibadah (Musholah)",
+      "H. Ruang OSIM",
+      "I. Tempat Olahraga",
+      "J. Gudang",
+      "K. WC Umum",
+      "L. Ruang Komputer",
+      "M. Lab Komputer",
+      "N. Perpustakaan"
+    ];
+    var IDENTITAS_JENJANG = {
+      "MA": {
+        nama: "MA.As'adiyah Ereng-Ereng",
+        judulBuku: "MA AS'ADIYAH ERENG-ERENG",
+        slugFile: "MA_Asadiyah_Ereng_Ereng",
+        prefix: "MA"
+      },
+      "MTs": {
+        nama: "MTs.As'adiyah Ereng-Ereng",
+        judulBuku: "MTs AS'ADIYAH ERENG-ERENG",
+        slugFile: "MTs_Asadiyah_Ereng_Ereng",
+        prefix: "MTS"
+      }
+    };
+    var EYE_OPEN_SVG =
+      '<svg class="icon-svg" viewBox="0 0 24 24">' +
+      '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"></path>' +
+      '<circle cx="12" cy="12" r="3"></circle>' +
+      "</svg>";
+    var EYE_OFF_SVG =
+      '<svg class="icon-svg" viewBox="0 0 24 24">' +
+      '<path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-6.4 0-10-7-10-7a18.45 18.45 0 0 1 5.06-5.94"></path>' +
+      '<path d="M9.9 4.24A9.12 9.12 0 0 1 12 5c6.4 0 10 7 10 7a18.5 18.5 0 0 1-2.16 3.19"></path>' +
+      '<line x1="1" y1="1" x2="23" y2="23"></line>' +
+      "</svg>";
+    function muatLogoAser() {
+      var logoEls = document.querySelectorAll(".logo-aser-img");
+      if (!logoEls.length) return;
+      var kandidat = [
+        "logoaser-sarpras",
+        "logoaser-sarpras.png",
+        "logoaser-sarpras.jpg",
+        "logoaser-sarpras.jpeg",
+        "logoaser-sarpras.webp"
+      ];
+      var idx = 0;
+      function cobaBerikutnya() {
+        if (idx >= kandidat.length) return;
+        var namaFile = kandidat[idx++];
+        var img = new Image();
+        img.onload = function () {
+          for (var i = 0; i < logoEls.length; i++) {
+            logoEls[i].src = encodeURI(namaFile);
+          }
+        };
+        img.onerror = cobaBerikutnya;
+        img.src = encodeURI(namaFile);
+      }
+      cobaBerikutnya();
+    }
+    function muatFotoMadrasahBackground() {
+      var bgEl = document.getElementById("loginBgPhoto");
+      if (!bgEl) return;
+      var kandidat = [
+        "foto-madrasah-sarpras",
+        "foto-madrasah-sarpras.jpg",
+        "foto-madrasah-sarpras.png",
+        "foto-madrasah-sarpras.jpeg",
+        "foto-madrasah-sarpras.webp"
+      ];
+      var idx = 0;
+      function cobaBerikutnya() {
+        if (idx >= kandidat.length) return;
+        var namaFile = kandidat[idx++];
+        var img = new Image();
+        img.onload = function () {
+          bgEl.style.backgroundImage = 'url("' + encodeURI(namaFile) + '")';
+        };
+        img.onerror = cobaBerikutnya;
+        img.src = encodeURI(namaFile);
+      }
+      cobaBerikutnya();
+    }
+    function tutupSemuaDd(kecualiId) {
+      var ids = ["ddJenjang", "ddTahun"];
+      for (var i = 0; i < ids.length; i++) {
+        var id = ids[i];
+        if (kecualiId && id === kecualiId) continue;
+        var el = document.getElementById(id);
+        if (el) el.classList.remove("open");
+      }
+    }
+    function bukaTutupDd(event, id) {
+      if (event) event.stopPropagation();
+      var el = document.getElementById(id);
+      if (!el) return;
+      var akanBuka = !el.classList.contains("open");
+      tutupSemuaDd(id);
+      el.classList.toggle("open", akanBuka);
+    }
+    document.addEventListener("click", function (e) {
+      if (!e.target.closest(".neon-dd")) {
+        tutupSemuaDd(null);
+      }
+    });
+    function pilihJenjangLogin(kode) {
+      jenjangLoginPilihan = kode === "MTs" ? "MTs" : "MA";
+      document.getElementById("labelJenjangLogin").textContent = jenjangLoginPilihan;
+      var opsi = document.querySelectorAll("#menuJenjangLogin .neon-dd-option");
+      for (var i = 0; i < opsi.length; i++) {
+        opsi[i].classList.toggle("selected", opsi[i].getAttribute("data-val") === jenjangLoginPilihan);
+      }
+      tutupSemuaDd(null);
+      sinkronTahunLogin();
+    }
+    function pilihTahunLogin(th) {
+      tahunLoginPilihan = String(th || "2026");
+      document.getElementById("labelTahunLogin").textContent = tahunLoginPilihan;
+      var opsi = document.querySelectorAll("#menuTahunLogin .neon-dd-option");
+      for (var i = 0; i < opsi.length; i++) {
+        opsi[i].classList.toggle("selected", opsi[i].getAttribute("data-val") === tahunLoginPilihan);
+      }
+      tutupSemuaDd(null);
+    }
+    function keyInventaris(jenjang, tahun) {
+      return "simsarpras_" + jenjang + "_" + String(tahun) + "_inventaris_buku_v1";
+    }
+    function keyBagianSarana(jenjang, tahun) {
+      return "simsarpras_" + jenjang + "_" + String(tahun) + "_bagian_sarana_v1";
+    }
+    function keyPemeliharaan(jenjang, tahun) {
+      return "simsarpras_" + jenjang + "_" + String(tahun) + "_pemeliharaan_buku_v3";
+    }
+    function bukaKonfirmasi(opsi) {
+      document.getElementById("confirmJudul").textContent = opsi.judul || "Konfirmasi";
+      document.getElementById("confirmPesan").textContent = opsi.pesan || "Apakah Anda yakin?";
+      var topBar = document.getElementById("confirmTop");
+      var btnYa = document.getElementById("btnKonfirmasiYa");
+      if (opsi.bahaya) {
+        topBar.classList.add("danger");
+        btnYa.className = "btn-hapus-row";
+        btnYa.style.padding = "8px 16px";
+        btnYa.style.fontSize = "0.84rem";
+      } else {
+        topBar.classList.remove("danger");
+        btnYa.className = "btn-simpan";
+        btnYa.style.padding = "8px 16px";
+        btnYa.style.fontSize = "0.84rem";
+      }
+      btnYa.textContent = opsi.teksYa || "Ya, Lanjutkan";
+      callbackKonfirmasi = opsi.onYa || null;
+      document.getElementById("modalConfirm").classList.add("open");
+    }
+    function tutupConfirm(setuju) {
+      document.getElementById("modalConfirm").classList.remove("open");
+      var fn = callbackKonfirmasi;
+      callbackKonfirmasi = null;
+      if (setuju && typeof fn === "function") {
+        fn();
+      }
+    }
+    function infoJenjang() {
+      return IDENTITAS_JENJANG[jenjangAktif] || IDENTITAS_JENJANG["MA"];
+    }
+    function salinArrayData(arr) {
+      try {
+        return JSON.parse(JSON.stringify(arr || []));
+      } catch (e) {
+        return [];
+      }
+    }
+    function contohInventarisUntuk(kodeJenjang, tahun) {
+      var prefix = (IDENTITAS_JENJANG[kodeJenjang] || IDENTITAS_JENJANG["MA"]).prefix;
+      var th = String(tahun || "2026");
+      return [
+        {
+          kelompok: "PRASARANA",
+          bagian: "",
+          nama: "Ruang Kelas & Ruang Guru",
+          thn: th,
+          qty: 6,
+          kode: prefix + "-PRS-01",
+          sumber: "BOS",
+          keadaan: "Baik",
+          ket: "Bangunan utama " + prefix
+        },
+        {
+          kelompok: "SARANA",
+          bagian: "A. Ruang Kelas",
+          nama: "Kursi Peserta Didik",
+          thn: th,
+          qty: 95,
+          kode: "A.001",
+          sumber: "BOS",
+          keadaan: "Baik",
+          ket: "Ruang kelas " + prefix
+        },
+        {
+          kelompok: "SARANA",
+          bagian: "B. Ruang Guru",
+          nama: "Meja & Kursi Guru",
+          thn: th,
+          qty: 16,
+          kode: "B.001",
+          sumber: "Ponpes",
+          keadaan: "Baik",
+          ket: "Ruang guru " + prefix
+        }
+      ];
+    }
+    function contohPemeliharaanUntuk() {
+      return [
+        { nama: "Ruang Kelas (Lantai, Dinding, Jendela)", kodeLokasi: "RK-01 s.d. RK-12", jenis: "Pembersihan harian & cek kaca/engsel", frekuensi: "Harian / Bulanan", penanggungJawab: "Petugas Kebersihan & Wali Kelas", keterangan: "Baik & bersih" },
+        { nama: "Meja & Kursi Siswa", kodeLokasi: "RK-01 s.d. RK-12", jenis: "Pengecekan mur/baut & perbaikan cat/kayu", frekuensi: "Tiap 6 bulan", penanggungJawab: "Waka Sarpras & Tukang", keterangan: "2 kursi perlu diperbaiki" },
+        { nama: "Papan Tulis (Whiteboard / Blackboard)", kodeLokasi: "Seluruh Ruang Kelas", jenis: "Pembersihan noda spidol & cek bingkai", frekuensi: "Mingguan / Bulanan", penanggungJawab: "Wali Kelas & Petugas Kebersihan", keterangan: "Layak pakai" },
+        { nama: "Perangkat Komputer & Laptop", kodeLokasi: "LAB-IT / R. TU", jenis: "Pembersihan debu, update software, antivirus", frekuensi: "Tiap 3 bulan", penanggungJawab: "Teknisi / Staf IT", keterangan: "Berfungsi normal" },
+        { nama: "Proyektor LCD & Layar", kodeLokasi: "R. Kelas / Aula", jenis: "Pembersihan lensa, filter udara, cek kabel", frekuensi: "Tiap 3 bulan", penanggungJawab: "Staf IT / Waka Sarpras", keterangan: "Berfungsi normal" },
+        { nama: "Printer", kodeLokasi: "R. TU / R. Guru", jenis: "Pengisian tinta/toner & servis berkala", frekuensi: "Bulanan / Insidental", penanggungJawab: "Staf Tata Usaha", keterangan: "Baik, tinta terisi" },
+        { nama: "Jaringan Internet & Router Wi-Fi", kodeLokasi: "Seluruh Area", jenis: "Pengecekan sinyal, restart berkala, cek kabel LAN", frekuensi: "Bulanan", penanggungJawab: "Staf IT", keterangan: "Stabil" },
+        { nama: "Kipas Angin", kodeLokasi: "R. Guru / Lab / Kelas", jenis: "Cuci filter, isi freon, pembersihan baling-baling", frekuensi: "Tiap 3-4 bulan", penanggungJawab: "Teknisi AC / Petugas Kebersihan", keterangan: "Dingin & berfungsi baik" },
+        { nama: "Instalasi Listrik, Lampu & Sakelar", kodeLokasi: "Seluruh Gedung", jenis: "Pengecekan kabel, stopkontak, & ganti lampu mati", frekuensi: "Bulanan / Insidental", penanggungJawab: "Teknisi Listrik / Sarpras", keterangan: "Aman, 1 lampu diganti" },
+        { nama: "MCK / Toilet Siswa & Guru", kodeLokasi: "WC-01 s.d. WC-04", jenis: "Pengurasan bak, pembersihan lantai, cek kran", frekuensi: "Harian & Mingguan", penanggungJawab: "Petugas Kebersihan", keterangan: "Bersih, air lancar" },
+        { nama: "Tandon / Tangki Air & Pompa Air", kodeLokasi: "Area Belakang / Atap", jenis: "Pengurasan lumut tandon & cek mesin pompa", frekuensi: "Tiap 3 bulan", penanggungJawab: "Petugas Kebersihan / Teknisi", keterangan: "Berfungsi normal" },
+        { nama: "Gedung Utama, Atap & Plafon", kodeLokasi: "BDG-01", jenis: "Cek kebocoran genting, talang air, & cat dinding", frekuensi: "Tiap 1 tahun / Insidental", penanggungJawab: "Waka Sarpras & Tukang", keterangan: "Aman, tidak ada bocor" },
+        { nama: "Pagar Sekolah & Gerbang Utama", kodeLokasi: "Area Depan", jenis: "Pengecatan ulang & pelumasan engsel/roda", frekuensi: "Tiap 1 tahun", penanggungJawab: "Penjaga Sekolah / Sarpras", keterangan: "Baik" },
+        { nama: "Koleksi Buku & Rak Perpustakaan", kodeLokasi: "R. Perpustakaan", jenis: "Pembersihan debu, penyampulan ulang, anti-rayap", frekuensi: "Bulanan / Tiap 6 bulan", penanggungJawab: "Pustakawan", keterangan: "Tertata rapi" },
+        { nama: "Peralatan Olahraga (Bola, Matras, Net)", kodeLokasi: "Gudang OR / Lapangan", jenis: "Pencucian, pemompaan bola, & cek kelayakan", frekuensi: "Tiap 3 bulan / Setelah pakai", penanggungJawab: "Guru PJOK", keterangan: "Layak pakai" },
+        { nama: "Alat Musik & Sound System / Pengeras Suara", kodeLokasi: "R. Seni / Aula", jenis: "Cek kabel audio, mikrofon, & penyimpanan", frekuensi: "Tiap 3 bulan / Sebelum acara", penanggungJawab: "Guru Seni / Staf Sarpras", keterangan: "Suara jernih" },
+        { nama: "Alat Pemadam Api Ringan (APAR)", kodeLokasi: "Koridor / Lab / Dapur", jenis: "Cek tekanan tabung, segel, & masa kedaluwarsa", frekuensi: "Tiap 6 bulan", penanggungJawab: "Petugas K3 / Sarpras", keterangan: "Tekanan normal" },
+        { nama: "Kotak P3K & Perlengkapan UKS", kodeLokasi: "R. UKS", jenis: "Pengecekan stok obat & tanggal kedaluwarsa", frekuensi: "Bulanan", penanggungJawab: "Pembina UKS", keterangan: "Stok lengkap" },
+        { nama: "Taman, Saluran Drainase & Tempat Sampah", kodeLokasi: "Halaman & Taman", jenis: "Pemangkasan tanaman, pembersihan selokan", frekuensi: "Mingguan / Bulanan", penanggungJawab: "Petugas Kebersihan / Taman", keterangan: "Lingkungan asri" }
+      ];
+    }
+    function normalisasiItemPemeliharaan(item) {
+      return {
+        nama: String((item && (item.nama || item.namaBarang)) || "").trim(),
+        kodeLokasi: String((item && (item.kodeLokasi || item.kode || item.lokasi)) || "").trim(),
+        jenis: String((item && (item.jenis || item.jenisPemeliharaan)) || "").trim(),
+        frekuensi: String((item && (item.frekuensi || item.jadwal || item.tglJadwal)) || "").trim(),
+        penanggungJawab: String((item && (item.penanggungJawab || item.pj)) || "").trim(),
+        keterangan: String((item && (item.keterangan || item.ket || item.kondisi)) || "").trim()
+      };
+    }
+    function daftarTahunTersimpanUntuk(kodeJenjang) {
+      var prefixKey = "simsarpras_" + kodeJenjang + "_";
+      var setTahun = { "2025": true, "2026": true };
+      try {
+        for (var i = 0; i < localStorage.length; i++) {
+          var k = localStorage.key(i) || "";
+          if (k.indexOf(prefixKey) === 0) {
+            var sisa = k.slice(prefixKey.length);
+            var bagian = sisa.split("_");
+            if (bagian.length > 0 && /^\d{4}$/.test(bagian[0])) {
+              setTahun[bagian[0]] = true;
+            }
+          }
+        }
+      } catch (e) {}
+      return Object.keys(setTahun).sort(function (a, b) {
+        return Number(a) - Number(b);
+      });
+    }
+    function sinkronTahunLogin() {
+      var menuTahun = document.getElementById("menuTahunLogin");
+      if (!menuTahun) return;
+      var tahunList = daftarTahunTersimpanUntuk(jenjangLoginPilihan);
+      if (tahunList.indexOf(tahunLoginPilihan) === -1) {
+        tahunLoginPilihan = tahunList[tahunList.length - 1] || "2026";
+      }
+      var html = "";
+      for (var i = 0; i < tahunList.length; i++) {
+        var th = tahunList[i];
+        var sel = th === tahunLoginPilihan ? " selected" : "";
+        html +=
+          '<div class="neon-dd-option' + sel + '" data-val="' + th + '" onclick="pilihTahunLogin(\'' + th + '\')">' +
+          "<span>" + th + "</span>" +
+          "<span>&#10003;</span>" +
+          "</div>";
+      }
+      menuTahun.innerHTML = html;
+      document.getElementById("labelTahunLogin").textContent = tahunLoginPilihan;
+    }
+    function cariTahunSebelumnyaYangAdaData(kodeJenjang, tahunTarget, jenisData) {
+      var targetAngka = Number(tahunTarget);
+      var tahunTerdeteksi = {};
+      var prefixKey = "simsarpras_" + kodeJenjang + "_";
+      var suffix = jenisData === "pm"
+        ? "_pemeliharaan_buku_v3"
+        : (jenisData === "bagian" ? "_bagian_sarana_v1" : "_inventaris_buku_v1");
+      try {
+        for (var i = 0; i < localStorage.length; i++) {
+          var k = localStorage.key(i) || "";
+          if (k.indexOf(prefixKey) === 0 && k.indexOf(suffix) !== -1) {
+            var tengah = k.slice(prefixKey.length, k.indexOf(suffix));
+            if (/^\d{4}$/.test(tengah) && Number(tengah) < targetAngka) {
+              tahunTerdeteksi[tengah] = true;
+            }
+          }
+        }
+      } catch (e) {}
+      var kandidat = Object.keys(tahunTerdeteksi).sort(function (a, b) {
+        return Number(b) - Number(a);
+      });
+      for (var j = 0; j < kandidat.length; j++) {
+        var thKandidat = kandidat[j];
+        var kunci = jenisData === "pm"
+          ? keyPemeliharaan(kodeJenjang, thKandidat)
+          : (jenisData === "bagian" ? keyBagianSarana(kodeJenjang, thKandidat) : keyInventaris(kodeJenjang, thKandidat));
+        try {
+          var raw = localStorage.getItem(kunci);
+          if (raw) {
+            var parsed = JSON.parse(raw);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              return { tahun: thKandidat, data: parsed };
+            }
+          }
+        } catch (e) {}
+      }
+      return null;
+    }
+    function gabungkanDaftarBagian(bagianTersimpan) {
+      var hasil = BAGIAN_SARANA_BAWAAN.slice();
+      if (Array.isArray(bagianTersimpan)) {
+        for (var i = 0; i < bagianTersimpan.length; i++) {
+          var b = String(bagianTersimpan[i] || "").trim();
+          if (b && hasil.indexOf(b) === -1) {
+            hasil.push(b);
+          }
+        }
+      }
+      for (var j = 0; j < dataInventaris.length; j++) {
+        var item = dataInventaris[j];
+        if (item && item.kelompok === "SARANA") {
+          var bg = String(item.bagian || "").trim();
+          if (bg && hasil.indexOf(bg) === -1) {
+            hasil.push(bg);
+          }
+        }
+      }
+      return hasil;
+    }
+    function muatDataJenjangDanTahun() {
+      var kInv = keyInventaris(jenjangAktif, tahunAktif);
+      var kBag = keyBagianSarana(jenjangAktif, tahunAktif);
+      var kPm = keyPemeliharaan(jenjangAktif, tahunAktif);
+      var sumberLanjutanInv = null;
+      var sumberLanjutanPm = null;
+      var bagianDariStorage = null;
+      try {
+        var rawInv = localStorage.getItem(kInv);
+        if (rawInv !== null) {
+          dataInventaris = JSON.parse(rawInv);
+        } else {
+          var prevInv = cariTahunSebelumnyaYangAdaData(jenjangAktif, tahunAktif, "inv");
+          if (prevInv) {
+            dataInventaris = salinArrayData(prevInv.data);
+            sumberLanjutanInv = prevInv.tahun;
+          } else {
+            dataInventaris = contohInventarisUntuk(jenjangAktif, tahunAktif);
+          }
+          localStorage.setItem(kInv, JSON.stringify(dataInventaris));
+        }
+      } catch (e) {
+        dataInventaris = contohInventarisUntuk(jenjangAktif, tahunAktif);
+      }
+      try {
+        var rawBag = localStorage.getItem(kBag);
+        if (rawBag !== null) {
+          bagianDariStorage = JSON.parse(rawBag);
+        } else {
+          var prevBag = cariTahunSebelumnyaYangAdaData(jenjangAktif, tahunAktif, "bagian");
+          if (prevBag) {
+            bagianDariStorage = salinArrayData(prevBag.data);
+          }
+        }
+      } catch (e) {}
+      daftarBagianSarana = gabungkanDaftarBagian(bagianDariStorage);
+      try {
+        localStorage.setItem(kBag, JSON.stringify(daftarBagianSarana));
+      } catch (e) {}
+      try {
+        var rawPm = localStorage.getItem(kPm);
+        if (rawPm !== null) {
+          var parsedPm = JSON.parse(rawPm);
+          dataPemeliharaan = Array.isArray(parsedPm) ? parsedPm.map(normalisasiItemPemeliharaan) : contohPemeliharaanUntuk();
+        } else {
+          var prevPm = cariTahunSebelumnyaYangAdaData(jenjangAktif, tahunAktif, "pm");
+          if (prevPm) {
+            dataPemeliharaan = salinArrayData(prevPm.data).map(normalisasiItemPemeliharaan);
+            sumberLanjutanPm = prevPm.tahun;
+          } else {
+            dataPemeliharaan = contohPemeliharaanUntuk();
+          }
+          localStorage.setItem(kPm, JSON.stringify(dataPemeliharaan));
+        }
+      } catch (e) {
+        dataPemeliharaan = contohPemeliharaanUntuk();
+      }
+      return {
+        invDariTahun: sumberLanjutanInv,
+        pmDariTahun: sumberLanjutanPm
+      };
+    }
+    function simpanStorage() {
+      try {
+        localStorage.setItem(keyInventaris(jenjangAktif, tahunAktif), JSON.stringify(dataInventaris));
+        localStorage.setItem(keyBagianSarana(jenjangAktif, tahunAktif), JSON.stringify(daftarBagianSarana));
+        localStorage.setItem(keyPemeliharaan(jenjangAktif, tahunAktif), JSON.stringify(dataPemeliharaan));
+      } catch (e) {}
+    }
+    function setStatusPreviewInventaris(sudahDicek) {
+      previewInventarisSudahDicek = Boolean(sudahDicek);
+      var btnDl = document.getElementById("btnDownloadInventaris");
+      if (!btnDl) return;
+      btnDl.disabled = false;
+      btnDl.title = previewInventarisSudahDicek
+        ? "Preview sudah dicek — klik untuk mengunduh file Excel"
+        : "Klik untuk membuka Preview Excel dan mengunduh file";
+    }
+    function renderFilterBagianInventaris(nilaiTerpilih) {
+      var filterEl = document.getElementById("filterBagianInventaris");
+      if (!filterEl) return;
+      var pilihan = nilaiTerpilih || filterEl.value || "SEMUA";
+      var bagianList = gabungkanDaftarBagian(daftarBagianSarana);
+      var html = '<option value="SEMUA">Tampilkan Semua</option>';
+      html += '<option value="KELOMPOK:PRASARANA">1. PRASARANA</option>';
+      html += '<option value="KELOMPOK:SARANA">2. SARANA (Semua Bagian)</option>';
+      for (var i = 0; i < bagianList.length; i++) {
+        var bg = bagianList[i];
+        var val = "BAGIAN:" + bg;
+        html += '<option value="' + escapeHtmlAttr(val) + '">&nbsp;&nbsp;&bull; ' + escapeHtmlText(bg) + "</option>";
+      }
+      filterEl.innerHTML = html;
+      var adaOpsi = false;
+      for (var j = 0; j < filterEl.options.length; j++) {
+        if (filterEl.options[j].value === pilihan) {
+          adaOpsi = true;
+          break;
+        }
+      }
+      filterEl.value = adaOpsi ? pilihan : "SEMUA";
+    }
+    function saatFilterBagianBerubah() {
+      var filterEl = document.getElementById("filterBagianInventaris");
+      var val = filterEl ? filterEl.value : "SEMUA";
+      var selKel = document.getElementById("invKelompok");
+      var selBag = document.getElementById("invBagianSarana");
+      if (val === "KELOMPOK:PRASARANA") {
+        selKel.value = "PRASARANA";
+        saatKelompokBerubah();
+      } else if (val.indexOf("BAGIAN:") === 0) {
+        var namaBag = val.slice("BAGIAN:".length);
+        selKel.value = "SARANA";
+        saatKelompokBerubah();
+        if (namaBag) {
+          selBag.value = namaBag;
+        }
+      }
+      renderInventaris();
+    }
+    function renderDropdownBagianSarana(nilaiTerpilih) {
+      var selectEl = document.getElementById("invBagianSarana");
+      if (!selectEl) return;
+      var pilihanSebelumnya = nilaiTerpilih || selectEl.value || (daftarBagianSarana[0] || "A. Ruang Kelas");
+      var html = "";
+      for (var i = 0; i < daftarBagianSarana.length; i++) {
+        var bg = daftarBagianSarana[i];
+        var sel = bg === pilihanSebelumnya ? " selected" : "";
+        html += '<option value="' + escapeHtmlAttr(bg) + '"' + sel + ">" + escapeHtmlText(bg) + "</option>";
+      }
+      selectEl.innerHTML = html;
+      if (!selectEl.value && daftarBagianSarana.length > 0) {
+        selectEl.value = daftarBagianSarana[0];
+      }
+    }
+    function saatKelompokBerubah() {
+      var kel = document.getElementById("invKelompok").value;
+      var selectBagian = document.getElementById("invBagianSarana");
+      var btnTambah = document.getElementById("btnBukaTambahBagian");
+      var adalahSarana = kel === "SARANA";
+      selectBagian.disabled = !adalahSarana;
+      btnTambah.disabled = !adalahSarana;
+      if (!adalahSarana) {
+        togglePanelTambahBagian(false);
+      }
+    }
+    function togglePanelTambahBagian(paksaBuka) {
+      var panel = document.getElementById("panelTambahBagian");
+      if (!panel) return;
+      var akanBuka = typeof paksaBuka === "boolean" ? paksaBuka : !panel.classList.contains("open");
+      panel.classList.toggle("open", akanBuka);
+      if (akanBuka) {
+        var inp = document.getElementById("inputNamaBagianBaru");
+        if (inp) {
+          inp.value = "";
+          inp.focus();
+        }
+      }
+    }
+    function hurufBerikutnyaUntukBagian() {
+      var hurufTerpakai = {};
+      for (var i = 0; i < daftarBagianSarana.length; i++) {
+        var match = String(daftarBagianSarana[i] || "").trim().match(/^([A-Za-z])\.\s*/);
+        if (match && match[1]) {
+          hurufTerpakai[match[1].toUpperCase()] = true;
+        }
+      }
+      var abjad = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      for (var c = 0; c < abjad.length; c++) {
+        var ch = abjad.charAt(c);
+        if (!hurufTerpakai[ch]) {
+          return ch;
+        }
+      }
+      return "Z";
+    }
+    function simpanBagianSaranaBaru() {
+      var inputEl = document.getElementById("inputNamaBagianBaru");
+      var namaRaw = (inputEl ? inputEl.value : "").trim();
+      if (!namaRaw) {
+        if (inputEl) inputEl.focus();
+        return;
+      }
+      var labelFinal = namaRaw;
+      if (!/^[A-Za-z]\.\s*/.test(namaRaw)) {
+        var huruf = hurufBerikutnyaUntukBagian();
+        labelFinal = huruf + ". " + namaRaw;
+      }
+      if (daftarBagianSarana.indexOf(labelFinal) === -1) {
+        daftarBagianSarana.push(labelFinal);
+      }
+      document.getElementById("invKelompok").value = "SARANA";
+      saatKelompokBerubah();
+      renderDropdownBagianSarana(labelFinal);
+      renderFilterBagianInventaris("BAGIAN:" + labelFinal);
+      simpanStorage();
+      renderInventaris();
+      togglePanelTambahBagian(false);
+      tambahAktivitas("Inventaris Barang", "Menambahkan bagian sarana: " + labelFinal);
+    }
+    function togglePassword() {
+      var inputPw = document.getElementById("loginPassword");
+      var btnPw = document.getElementById("btnTogglePw");
+      if (inputPw.type === "password") {
+        inputPw.type = "text";
+        btnPw.innerHTML = EYE_OFF_SVG;
+      } else {
+        inputPw.type = "password";
+        btnPw.innerHTML = EYE_OPEN_SVG;
+      }
+    }
+    function prosesLogin(event) {
+      event.preventDefault();
+      tutupSemuaDd(null);
+      var pw = document.getElementById("loginPassword").value;
+      var errBox = document.getElementById("loginError");
+      if (pw !== PASSWORD_BENAR) {
+        errBox.textContent = "Password salah. Silakan periksa kembali password Anda.";
+        errBox.classList.add("show");
+        document.getElementById("loginPassword").focus();
+        return;
+      }
+      errBox.classList.remove("show");
+      jenjangAktif = jenjangLoginPilihan;
+      tahunAktif = tahunLoginPilihan;
+      terapkanIdentitasDanTahun();
+      var infoLanjutan = muatDataJenjangDanTahun();
+      document.getElementById("invThn").value = tahunAktif;
+      renderDropdownBagianSarana("A. Ruang Kelas");
+      renderFilterBagianInventaris("SEMUA");
+      saatKelompokBerubah();
+      setStatusPreviewInventaris(false);
+      renderInventaris();
+      renderPemeliharaan();
+      resetAktivitasAwal(infoLanjutan);
+      pindahKeMenuById("view-dashboard", "Dashboard");
+      document.getElementById("loginScreen").classList.add("hidden");
+      document.getElementById("appShell").classList.add("active");
+      document.getElementById("loginPassword").value = "";
+    }
+    function klikLogout() {
+      bukaKonfirmasi({
+        judul: "Konfirmasi Logout",
+        pesan: "Keluar dari sesi " + infoJenjang().nama + " (Tahun " + tahunAktif + ") untuk memilih jenjang atau tahun lain?",
+        teksYa: "Ya, Keluar",
+        bahaya: true,
+        onYa: function () {
+          document.getElementById("appShell").classList.remove("active");
+          document.getElementById("loginScreen").classList.remove("hidden");
+          document.getElementById("loginError").classList.remove("show");
+          pilihJenjangLogin(jenjangAktif);
+          pilihTahunLogin(tahunAktif);
+          document.getElementById("loginPassword").value = "";
+          document.getElementById("loginPassword").focus();
+        }
+      });
+    }
+    function terapkanIdentitasDanTahun() {
+      var nama = infoJenjang().nama;
+      document.title = "SIMSARPRAS - " + nama + " (" + tahunAktif + ")";
+      document.getElementById("brandLembaga").textContent = nama;
+      document.getElementById("topbarLembaga").textContent = nama + " • Tahun " + tahunAktif;
+      document.getElementById("teksJenjangBreadcrumb").textContent = nama;
+      document.getElementById("pillTahunAktif").textContent = "TAHUN DATA " + tahunAktif;
+      var daftarLembaga = document.querySelectorAll(".nama-lembaga-dinamis");
+      for (var i = 0; i < daftarLembaga.length; i++) {
+        daftarLembaga[i].textContent = nama;
+      }
+      var daftarTahun = document.querySelectorAll(".tahun-aktif-dinamis");
+      for (var j = 0; j < daftarTahun.length; j++) {
+        daftarTahun[j].textContent = tahunAktif;
+      }
+    }
+    function resetAktivitasAwal(infoLanjutan) {
+      var nama = infoJenjang().nama;
+      var tbody = document.getElementById("tbodyAktivitas");
+      if (!tbody) return;
+      var ketLanjutan = "";
+      if (infoLanjutan && infoLanjutan.invDariTahun) {
+        ketLanjutan = " (otomatis melanjutkan data inventaris dari tahun " + infoLanjutan.invDariTahun + ")";
+      }
+      tbody.innerHTML =
+        "<tr>" +
+        "<td>Admin " + nama + "</td>" +
+        "<td>Login</td>" +
+        "<td>Masuk ke data " + nama + " Tahun " + tahunAktif + ketLanjutan + "</td>" +
+        "</tr>";
+    }
+    function tambahAktivitas(modul, pesan) {
+      var tbody = document.getElementById("tbodyAktivitas");
+      if (!tbody) return;
+      var tr = document.createElement("tr");
+      tr.innerHTML =
+        "<td>Admin " + infoJenjang().nama + "</td>" +
+        "<td>" + escapeHtmlText(modul) + "</td>" +
+        "<td>" + escapeHtmlText(pesan) + "</td>";
+      tbody.insertBefore(tr, tbody.firstChild);
+    }
+    function escapeHtmlText(teks) {
+      return String(teks || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+    function escapeHtmlAttr(teks) {
+      return String(teks || "")
+        .replace(/&/g, "&amp;")
+        .replace(/"/g, "&quot;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    }
+    function badgeKeadaan(teks) {
+      var lower = String(teks || "").toLowerCase();
+      if (lower.indexOf("rusak") !== -1) {
+        return '<span class="badge-status badge-rusak">' + escapeHtmlText(teks) + "</span>";
+      }
+      return '<span class="badge-status badge-baik">' + escapeHtmlText(teks) + "</span>";
+    }
+    function normalisasiItemInventaris(item) {
+      var kel = String((item && item.kelompok) || "").toUpperCase();
+      if (kel !== "PRASARANA" && kel !== "SARANA") {
+        kel = "SARANA";
+      }
+      var bag = kel === "SARANA"
+        ? String((item && item.bagian) || "").trim() || (daftarBagianSarana[0] || "A. Ruang Kelas")
+        : "";
+      return {
+        kelompok: kel,
+        bagian: bag,
+        nama: String((item && item.nama) || "").trim(),
+        thn: String((item && item.thn) || tahunAktif).trim(),
+        qty: ambilAngka(item && item.qty),
+        kode: String((item && item.kode) || "").trim(),
+        sumber: String((item && item.sumber) || "BOS").trim(),
+        keadaan: String((item && item.keadaan) || "Baik").trim(),
+        ket: String((item && item.ket) || "").trim()
+      };
+    }
+    function susunStrukturBukuInventaris() {
+      var q = (document.getElementById("cariInventaris").value || "").toLowerCase().trim();
+      var filterVal = (document.getElementById("filterBagianInventaris").value || "SEMUA");
+      var bagianAktifList = gabungkanDaftarBagian(daftarBagianSarana);
+      var prasaranaItems = [];
+      var saranaPerBagian = {};
+      for (var b = 0; b < bagianAktifList.length; b++) {
+        saranaPerBagian[bagianAktifList[b]] = [];
+      }
+      for (var i = 0; i < dataInventaris.length; i++) {
+        var norm = normalisasiItemInventaris(dataInventaris[i]);
+        if (norm.kelompok === "SARANA" && !saranaPerBagian[norm.bagian]) {
+          saranaPerBagian[norm.bagian] = [];
+          if (bagianAktifList.indexOf(norm.bagian) === -1) {
+            bagianAktifList.push(norm.bagian);
+          }
+        }
+        var teksCari = [
+          norm.kelompok === "PRASARANA" ? "1. prasarana" : "2. sarana",
+          norm.bagian,
+          norm.nama,
+          norm.thn,
+          norm.qty,
+          norm.kode,
+          norm.sumber,
+          norm.keadaan,
+          norm.ket
+        ].join(" ").toLowerCase();
+        if (q && teksCari.indexOf(q) === -1) {
+          continue;
+        }
+        var entry = { indexAsli: i, item: norm };
+        if (norm.kelompok === "PRASARANA") {
+          prasaranaItems.push(entry);
+        } else {
+          saranaPerBagian[norm.bagian].push(entry);
+        }
+      }
+      var tampilPrasarana = (filterVal === "SEMUA" || filterVal === "KELOMPOK:PRASARANA");
+      var tampilSaranaSemua = (filterVal === "SEMUA" || filterVal === "KELOMPOK:SARANA");
+      var bagianSpesifik = (filterVal.indexOf("BAGIAN:") === 0) ? filterVal.slice("BAGIAN:".length) : "";
+      var blok = [];
+      if (tampilPrasarana) {
+        blok.push({
+          tipe: "kelompok",
+          judul: "1. PRASARANA"
+        });
+        if (prasaranaItems.length === 0) {
+          blok.push({
+            tipe: "kosong",
+            pesan: q ? "Tidak ada data Prasarana yang cocok dengan pencarian." : "Belum ada data pada 1. PRASARANA."
+          });
+        } else {
+          for (var p = 0; p < prasaranaItems.length; p++) {
+            blok.push({
+              tipe: "item",
+              nomor: p + 1,
+              indexAsli: prasaranaItems[p].indexAsli,
+              item: prasaranaItems[p].item
+            });
+          }
+        }
+      }
+      if (tampilSaranaSemua || bagianSpesifik) {
+        if (tampilSaranaSemua) {
+          blok.push({
+            tipe: "kelompok",
+            judul: "2. SARANA"
+          });
+        }
+        for (var k = 0; k < bagianAktifList.length; k++) {
+          var namaBagian = bagianAktifList[k];
+          if (bagianSpesifik && namaBagian !== bagianSpesifik) {
+            continue;
+          }
+          var isiBagian = saranaPerBagian[namaBagian] || [];
+          if (q && !bagianSpesifik && isiBagian.length === 0) {
+            continue;
+          }
+          blok.push({
+            tipe: "subbagian",
+            judul: namaBagian
+          });
+          if (isiBagian.length === 0) {
+            blok.push({
+              tipe: "kosong",
+              pesan: "Belum ada inventaris pada " + namaBagian + " (silakan isi form di atas lalu klik Simpan Data)."
+            });
+          } else {
+            for (var s = 0; s < isiBagian.length; s++) {
+              blok.push({
+                tipe: "item",
+                nomor: s + 1,
+                indexAsli: isiBagian[s].indexAsli,
+                item: isiBagian[s].item
+              });
+            }
+          }
+        }
+      }
+      return blok;
+    }
+    function renderInventaris() {
+      var tbody = document.getElementById("tbodyInventaris");
+      if (!tbody) return;
+      var blok = susunStrukturBukuInventaris();
+      var html = "";
+      for (var i = 0; i < blok.length; i++) {
+        var row = blok[i];
+        if (row.tipe === "kelompok") {
+          html += '<tr class="row-kelompok-utama"><td colspan="9">' + escapeHtmlText(row.judul) + "</td></tr>";
+        } else if (row.tipe === "subbagian") {
+          html += '<tr class="row-sub-bagian"><td colspan="9">&nbsp;&nbsp;&nbsp;' + escapeHtmlText(row.judul) + "</td></tr>";
+        } else if (row.tipe === "kosong") {
+          html += '<tr class="row-kosong-bagian"><td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + escapeHtmlText(row.pesan) + "</td></tr>";
+        } else if (row.tipe === "item") {
+          var it = row.item;
+          html +=
+            "<tr>" +
+            '<td class="text-center">' + row.nomor + "</td>" +
+            "<td>" + escapeHtmlText(it.nama) + "</td>" +
+            '<td class="text-center">' + escapeHtmlText(it.thn) + "</td>" +
+            '<td class="text-center">' + it.qty + "</td>" +
+            "<td>" + escapeHtmlText(it.kode) + "</td>" +
+            "<td>" + escapeHtmlText(it.sumber) + "</td>" +
+            "<td>" + badgeKeadaan(it.keadaan) + "</td>" +
+            "<td>" + escapeHtmlText(it.ket) + "</td>" +
+            '<td><button type="button" class="btn-hapus-row" onclick="hapusInventaris(' + row.indexAsli + ')">Hapus</button></td>' +
+            "</tr>";
+        }
+      }
+      tbody.innerHTML = html;
+      hitungRingkasan();
+    }
+    function ambilPemeliharaanTersaring() {
+      var q = (document.getElementById("cariPemeliharaan").value || "").toLowerCase().trim();
+      var hasil = [];
+      for (var i = 0; i < dataPemeliharaan.length; i++) {
+        var item = normalisasiItemPemeliharaan(dataPemeliharaan[i]);
+        var gabungan = [
+          i + 1, item.nama, item.kodeLokasi, item.jenis,
+          item.frekuensi, item.penanggungJawab, item.keterangan
+        ].join(" ").toLowerCase();
+        if (q && gabungan.indexOf(q) === -1) continue;
+        hasil.push({ nomor: i + 1, indexAsli: i, data: item });
+      }
+      return hasil;
+    }
+    function renderPemeliharaan() {
+      var tbody = document.getElementById("tbodyPemeliharaan");
+      if (!tbody) return;
+      var daftar = ambilPemeliharaanTersaring();
+      if (daftar.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" class="text-center">Belum ada data pemeliharaan ' + escapeHtmlText(infoJenjang().nama) + ' untuk Tahun ' + escapeHtmlText(tahunAktif) + '. Silakan isi form di atas.</td></tr>';
+        hitungRingkasan();
+        return;
+      }
+      var html = "";
+      for (var i = 0; i < daftar.length; i++) {
+        var nomor = daftar[i].nomor;
+        var item = daftar[i].data;
+        var idxAsli = daftar[i].indexAsli;
+        html +=
+          "<tr>" +
+          '<td class="text-center">' + nomor + "</td>" +
+          "<td>" + escapeHtmlText(item.nama) + "</td>" +
+          "<td>" + escapeHtmlText(item.kodeLokasi) + "</td>" +
+          "<td>" + escapeHtmlText(item.jenis) + "</td>" +
+          "<td>" + escapeHtmlText(item.frekuensi) + "</td>" +
+          "<td>" + escapeHtmlText(item.penanggungJawab) + "</td>" +
+          "<td>" + escapeHtmlText(item.keterangan) + "</td>" +
+          '<td><button type="button" class="btn-hapus-row" onclick="hapusPemeliharaan(' + idxAsli + ')">Hapus</button></td>' +
+          "</tr>";
+      }
+      tbody.innerHTML = html;
+      hitungRingkasan();
+    }
+    function tambahInventaris(event) {
+      event.preventDefault();
+      var kelompok = document.getElementById("invKelompok").value;
+      var bagian = kelompok === "SARANA" ? (document.getElementById("invBagianSarana").value || "") : "";
+      var thnInput = document.getElementById("invThn").value.trim() || tahunAktif;
+      var baru = {
+        kelompok: kelompok,
+        bagian: bagian,
+        nama: document.getElementById("invNama").value.trim(),
+        thn: thnInput,
+        qty: ambilAngka(document.getElementById("invQty").value),
+        kode: document.getElementById("invKode").value.trim(),
+        sumber: document.getElementById("invSumber").value,
+        keadaan: document.getElementById("invKeadaan").value,
+        ket: document.getElementById("invKet").value.trim()
+      };
+      dataInventaris.push(baru);
+      if (kelompok === "SARANA" && baru.bagian && daftarBagianSarana.indexOf(baru.bagian) === -1) {
+        daftarBagianSarana.push(baru.bagian);
+      }
+      setStatusPreviewInventaris(false);
+      simpanStorage();
+      renderFilterBagianInventaris();
+      renderInventaris();
+      var labelLokasi = kelompok === "PRASARANA" ? "1. PRASARANA" : "2. SARANA > " + baru.bagian;
+      tambahAktivitas("Inventaris Barang", "Menambahkan [" + labelLokasi + "]: " + baru.nama + " (" + baru.qty + " unit)");
+      document.getElementById("invNama").value = "";
+      document.getElementById("invQty").value = 1;
+      document.getElementById("invKode").value = "";
+      document.getElementById("invKet").value = "";
+      document.getElementById("invThn").value = tahunAktif;
+      document.getElementById("invNama").focus();
+    }
+    function hapusInventaris(index) {
+      var dihapus = dataInventaris[index];
+      dataInventaris.splice(index, 1);
+      setStatusPreviewInventaris(false);
+      simpanStorage();
+      renderInventaris();
+      if (dihapus) {
+        tambahAktivitas("Inventaris Barang", "Menghapus barang (" + infoJenjang().nama + " • Tahun " + tahunAktif + "): " + (dihapus.nama || ""));
+      }
+    }
+    function tambahPemeliharaan(event) {
+      event.preventDefault();
+      var baru = normalisasiItemPemeliharaan({
+        nama: document.getElementById("pmNama").value.trim(),
+        kodeLokasi: document.getElementById("pmKodeLokasi").value.trim(),
+        jenis: document.getElementById("pmJenis").value.trim(),
+        frekuensi: document.getElementById("pmFrekuensi").value.trim(),
+        penanggungJawab: document.getElementById("pmPenanggungJawab").value.trim(),
+        keterangan: document.getElementById("pmKeterangan").value.trim()
+      });
+      dataPemeliharaan.push(baru);
+      simpanStorage();
+      renderPemeliharaan();
+      tambahAktivitas("Pemeliharaan Sarpras", "Menambahkan pemeliharaan (" + infoJenjang().nama + " • Tahun " + tahunAktif + "): " + baru.nama);
+      document.getElementById("formPemeliharaan").reset();
+      document.getElementById("pmNama").focus();
+    }
+    function hapusPemeliharaan(index) {
+      var dihapus = dataPemeliharaan[index];
+      dataPemeliharaan.splice(index, 1);
+      simpanStorage();
+      renderPemeliharaan();
+      if (dihapus) {
+        tambahAktivitas("Pemeliharaan Sarpras", "Menghapus pemeliharaan (" + infoJenjang().nama + " • Tahun " + tahunAktif + "): " + (dihapus.nama || ""));
+      }
+    }
+    function pindahMenu(idSection, namaMenu, elemenMenu) {
+      var semuaSection = document.querySelectorAll(".view-section");
+      for (var i = 0; i < semuaSection.length; i++) {
+        semuaSection[i].classList.remove("active");
+      }
+      var target = document.getElementById(idSection);
+      if (target) target.classList.add("active");
+      var semuaMenu = document.querySelectorAll(".menu-item");
+      for (var j = 0; j < semuaMenu.length; j++) {
+        semuaMenu[j].classList.remove("active");
+      }
+      if (elemenMenu) elemenMenu.classList.add("active");
+      document.getElementById("judulHalaman").textContent = namaMenu;
+      document.getElementById("teksBreadcrumb").textContent = namaMenu;
+    }
+    function pindahKeMenuById(idSection, namaMenu) {
+      pindahMenu(idSection, namaMenu, null);
+      var semuaMenu = document.querySelectorAll(".menu-item");
+      for (var i = 0; i < semuaMenu.length; i++) {
+        if (semuaMenu[i].textContent.indexOf(namaMenu) !== -1) {
+          semuaMenu[i].classList.add("active");
+        }
+      }
+    }
+    document.getElementById("btnToggle").onclick = function () {
+      document.getElementById("sidebar").classList.toggle("collapsed");
+    };
+    function ambilAngka(teks) {
+      var bersih = String(teks || "").replace(/[^\d.-]/g, "");
+      var n = Number(bersih);
+      return isNaN(n) ? 0 : n;
+    }
+    function hitungRingkasan() {
+      var jenisBarang = dataInventaris.length;
+      var keadaanBaik = 0;
+      var barangRusak = 0;
+      for (var i = 0; i < dataInventaris.length; i++) {
+        var norm = normalisasiItemInventaris(dataInventaris[i]);
+        var qty = norm.qty;
+        var keadaan = norm.keadaan.toLowerCase();
+        if (keadaan.indexOf("baik") !== -1) keadaanBaik += qty;
+        if (keadaan.indexOf("rusak") !== -1) barangRusak += qty;
+      }
+      document.getElementById("statJenisBarang").textContent = jenisBarang;
+      document.getElementById("statKeadaanBaik").textContent = keadaanBaik;
+      document.getElementById("statBarangRusak").textContent = barangRusak;
+      document.getElementById("statJadwalPemeliharaan").textContent = dataPemeliharaan.length;
+    }
+    function susunDataInventaris() {
+      var cfg = infoJenjang();
+      var headers = [
+        "No",
+        "Nama Inventaris",
+        "Tahun Pengadaan",
+        "Jumlah Barang",
+        "Kode Barang",
+        "Sumber Barang",
+        "Keadaan Barang",
+        "Keterangan"
+      ];
+      var blok = susunStrukturBukuInventaris();
+      var structuredRows = [];
+      var totalItem = 0;
+      var totalQty = 0;
+      for (var i = 0; i < blok.length; i++) {
+        var row = blok[i];
+        if (row.tipe === "kelompok") {
+          structuredRows.push({ type: "group", text: row.judul });
+        } else if (row.tipe === "subbagian") {
+          structuredRows.push({ type: "subgroup", text: row.judul });
+        } else if (row.tipe === "item") {
+          var it = row.item;
+          totalItem += 1;
+          totalQty += it.qty;
+          structuredRows.push({
+            type: "data",
+            cells: [
+              String(row.nomor),
+              it.nama,
+              it.thn,
+              String(it.qty),
+              it.kode,
+              it.sumber,
+              it.keadaan,
+              it.ket
+            ]
+          });
+        }
+      }
+      var footer = [
+        { colspan: 2, align: "right", text: "TOTAL (" + totalItem + " Jenis Barang)" },
+        { colspan: 1, align: "center", text: "-" },
+        { colspan: 1, align: "center", text: String(totalQty) },
+        { colspan: 4, align: "left", text: "" }
+      ];
+      return {
+        namaFile: "Buku_Inventaris_" + cfg.slugFile + "_Tahun_" + tahunAktif + ".xls",
+        judul: "BUKU INVENTARIS BARANG - " + cfg.nama + " (TAHUN " + tahunAktif + ")",
+        subJudul: "SIMSARPRAS " + cfg.nama + " - TAHUN DATA " + tahunAktif,
+        headers: headers,
+        structuredRows: structuredRows,
+        footer: footer
+      };
+    }
+    function susunDataPemeliharaan() {
+      var cfg = infoJenjang();
+      var headers = [
+        "No",
+        "Nama Barang / Fasilitas",
+        "Kode / Lokasi",
+        "Jenis Pemeliharaan",
+        "Frekuensi / Jadwal",
+        "Penanggung Jawab",
+        "Keterangan / Kondisi"
+      ];
+      var daftar = ambilPemeliharaanTersaring();
+      var dataBaris = [];
+      for (var i = 0; i < daftar.length; i++) {
+        var item = daftar[i].data;
+        dataBaris.push([
+          String(daftar[i].nomor),
+          item.nama,
+          item.kodeLokasi,
+          item.jenis,
+          item.frekuensi,
+          item.penanggungJawab,
+          item.keterangan
+        ]);
+      }
+      var footer = [
+        { colspan: 2, align: "right", text: "JUMLAH ITEM PEMELIHARAAN" },
+        { colspan: 5, align: "left", text: dataBaris.length + " Item" }
+      ];
+      return {
+        namaFile: "Buku_Pemeliharaan_Sarpras_" + cfg.slugFile + "_Tahun_" + tahunAktif + ".xls",
+        judul: "BUKU PEMELIHARAAN SARANA DAN PRASARANA",
+        subJudul: cfg.judulBuku + " — TAHUN " + tahunAktif,
+        headerBg: "#f5e600",
+        headerColor: "#111827",
+        headers: headers,
+        rows: dataBaris,
+        footer: footer
+      };
+    }
+    function tampilkanModalPreview(paket, fungsiUnduh, catatanInfo) {
+      document.getElementById("modalJudul").textContent = "Preview Sebelum Download - " + paket.judul;
+      var colCount = paket.headers.length;
+      var thHtml = paket.headers.map(function (h) {
+        return "<th>" + escapeHtmlText(h) + "</th>";
+      }).join("");
+      var trHtml = "";
+      if (paket.structuredRows) {
+        if (paket.structuredRows.length === 0) {
+          trHtml = '<tr><td colspan="' + colCount + '" class="text-center">Tidak ada baris data</td></tr>';
+        } else {
+          for (var s = 0; s < paket.structuredRows.length; s++) {
+            var sr = paket.structuredRows[s];
+            if (sr.type === "group") {
+              trHtml += '<tr class="row-kelompok-utama"><td colspan="' + colCount + '">' + escapeHtmlText(sr.text) + "</td></tr>";
+            } else if (sr.type === "subgroup") {
+              trHtml += '<tr class="row-sub-bagian"><td colspan="' + colCount + '">&nbsp;&nbsp;&nbsp;' + escapeHtmlText(sr.text) + "</td></tr>";
+            } else if (sr.type === "data") {
+              trHtml += "<tr>";
+              for (var c = 0; c < sr.cells.length; c++) {
+                var alignClass = (c === 0 || c === 2 || c === 3) ? ' class="text-center"' : "";
+                trHtml += "<td" + alignClass + ">" + escapeHtmlText(sr.cells[c]) + "</td>";
+              }
+              trHtml += "</tr>";
+            }
+          }
+        }
+      } else {
+        if (!paket.rows || paket.rows.length === 0) {
+          trHtml = '<tr><td colspan="' + colCount + '" class="text-center">Tidak ada baris data</td></tr>';
+        } else {
+          for (var r = 0; r < paket.rows.length; r++) {
+            trHtml += "<tr>";
+            for (var c2 = 0; c2 < paket.rows[r].length; c2++) {
+              var cls = c2 === 0 ? ' class="text-center"' : "";
+              trHtml += "<td" + cls + ">" + escapeHtmlText(paket.rows[r][c2]) + "</td>";
+            }
+            trHtml += "</tr>";
+          }
+        }
+      }
+      var footHtml = '<tr class="preview-total-row">';
+      for (var f = 0; f < paket.footer.length; f++) {
+        var item = paket.footer[f];
+        footHtml += '<td colspan="' + item.colspan + '" style="text-align:' + item.align + ';">' + escapeHtmlText(item.text) + "</td>";
+      }
+      footHtml += "</tr>";
+      var infoHtml = catatanInfo
+        ? '<div class="preview-info-note">' + escapeHtmlText(catatanInfo) + "</div>"
+        : "";
+      document.getElementById("modalIsiPreview").innerHTML =
+        '<div class="preview-sheet-title">' + escapeHtmlText(paket.judul) + "</div>" +
+        '<div class="preview-sheet-sub">' + escapeHtmlText(paket.subJudul) + "</div>" +
+        '<div class="table-responsive"><table class="preview-table"><thead><tr>' + thHtml + "</tr></thead><tbody>" + trHtml + footHtml + "</tbody></table></div>" +
+        infoHtml;
+      aksiUnduhAktif = fungsiUnduh;
+      var btnModal = document.getElementById("btnUnduhDariModal");
+      btnModal.disabled = false;
+      btnModal.onclick = function () {
+        setStatusPreviewInventaris(true);
+        if (typeof aksiUnduhAktif === "function") {
+          aksiUnduhAktif();
+        }
+      };
+      document.getElementById("modalPreview").classList.add("open");
+    }
+    function tutupPreview() {
+      document.getElementById("modalPreview").classList.remove("open");
+    }
+    function simpanFileExcel(paket) {
+      var colCount = paket.headers.length;
+      var bgHeader = paket.headerBg || "#2e7d1f";
+      var fgHeader = paket.headerColor || "#ffffff";
+      var thHtml = paket.headers.map(function (h) {
+        return '<th style="background:' + bgHeader + ';color:' + fgHeader + ';font-weight:bold;border:1px solid #333333;padding:8px;text-align:center;">' + escapeHtmlText(h) + "</th>";
+      }).join("");
+      var isiBarisHtml = "";
+      if (paket.structuredRows) {
+        if (paket.structuredRows.length === 0) {
+          isiBarisHtml = "<tr>" + paket.headers.map(function () { return "<td></td>"; }).join("") + "</tr>";
+        } else {
+          for (var s = 0; s < paket.structuredRows.length; s++) {
+            var sr = paket.structuredRows[s];
+            if (sr.type === "group") {
+              isiBarisHtml += '<tr><td colspan="' + colCount + '" style="background:#d8f3dc;color:#1b4332;font-weight:bold;padding:7px 8px;">' + escapeHtmlText(sr.text) + "</td></tr>";
+            } else if (sr.type === "subgroup") {
+              isiBarisHtml += '<tr><td colspan="' + colCount + '" style="background:#e7f1ff;color:#0b3c5d;font-weight:bold;padding:6px 8px 6px 18px;">' + escapeHtmlText(sr.text) + "</td></tr>";
+            } else if (sr.type === "data") {
+              isiBarisHtml += "<tr>";
+              for (var c = 0; c < sr.cells.length; c++) {
+                isiBarisHtml += "<td>" + escapeHtmlText(sr.cells[c]) + "</td>";
+              }
+              isiBarisHtml += "</tr>";
+            }
+          }
+        }
+      } else {
+        if (!paket.rows || paket.rows.length === 0) {
+          isiBarisHtml = "<tr>" + paket.headers.map(function () { return "<td></td>"; }).join("") + "</tr>";
+        } else {
+          for (var r = 0; r < paket.rows.length; r++) {
+            isiBarisHtml += "<tr>";
+            for (var c2 = 0; c2 < paket.rows[r].length; c2++) {
+              var alignTd = c2 === 0 ? ' style="text-align:center;"' : "";
+              isiBarisHtml += "<td" + alignTd + ">" + escapeHtmlText(paket.rows[r][c2]) + "</td>";
+            }
+            isiBarisHtml += "</tr>";
+          }
+        }
+      }
+      var footerHtml = '<tr style="background:#f2f4f7;font-weight:bold;">';
+      for (var f = 0; f < paket.footer.length; f++) {
+        var item = paket.footer[f];
+        footerHtml += '<td colspan="' + item.colspan + '" style="text-align:' + item.align + ';border:1px solid #888888;padding:6px 8px;">' + escapeHtmlText(item.text) + "</td>";
+      }
+      footerHtml += "</tr>";
+      var html =
+        '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">' +
+        '<head><meta charset="UTF-8"><style>table{border-collapse:collapse;font-family:Calibri,Arial,sans-serif;font-size:11pt;}td,th{border:1px solid #888888;padding:6px 8px;}</style></head>' +
+        "<body><table>" +
+        '<tr><td colspan="' + colCount + '" style="font-size:14pt;font-weight:bold;text-align:center;border:none;padding:6px;">' + escapeHtmlText(paket.judul) + "</td></tr>" +
+        '<tr><td colspan="' + colCount + '" style="font-size:11pt;font-weight:bold;text-align:center;border:none;padding-bottom:10px;">' + escapeHtmlText(paket.subJudul) + "</td></tr>" +
+        "<tr>" + thHtml + "</tr>" +
+        isiBarisHtml +
+        footerHtml +
+        "</table></body></html>";
+      var blob = new Blob(["\ufeff" + html], { type: "application/vnd.ms-excel;charset=utf-8;" });
+      var url = URL.createObjectURL(blob);
+      var link = document.createElement("a");
+      link.href = url;
+      link.download = paket.namaFile;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+    function bukaPreviewInventaris() {
+      tampilkanModalPreview(
+        susunDataInventaris(),
+        function () {
+          simpanFileExcel(susunDataInventaris());
+        },
+        "Susunan pada file Excel akan mengikuti filter bagian yang sedang tampil saat ini. Klik Unduh File (.xls) untuk mengunduh."
+      );
+    }
+    function downloadExcelInventaris() {
+      if (!previewInventarisSudahDicek) {
+        bukaPreviewInventaris();
+        return;
+      }
+      simpanFileExcel(susunDataInventaris());
+    }
+    function bukaPreviewPemeliharaan() {
+      tampilkanModalPreview(
+        susunDataPemeliharaan(),
+        function () {
+          simpanFileExcel(susunDataPemeliharaan());
+        },
+        "Format tabel mengikuti Buku Pemeliharaan Sarana dan Prasarana (7 kolom)."
+      );
+    }
+    function downloadExcelPemeliharaan() {
+      simpanFileExcel(susunDataPemeliharaan());
+    }
+    function muatKartuPengelola() {
+      var imgEl = document.getElementById("imgKartuPengelola");
+      if (!imgEl) return;
+      var kandidat = [
+        "Pengelola-sarpras.png",
+        "Pengelola-sarpras.png.jpg",
+        "Pengelola-sarpras.png.png",
+        "Pengelola-sarpras.jpg",
+        "Pengelola-sarpras"
+      ];
+      var idx = 0;
+      function cobaMuat() {
+        if (idx >= kandidat.length) return;
+        var namaFile = kandidat[idx++];
+        var tester = new Image();
+        tester.onload = function () {
+          imgEl.style.display = "block";
+          imgEl.src = encodeURI(namaFile);
+        };
+        tester.onerror = cobaMuat;
+        tester.src = encodeURI(namaFile);
+      }
+      cobaMuat();
+    }
+    muatLogoAser();
+    muatFotoMadrasahBackground();
+    muatKartuPengelola();
+    sinkronTahunLogin();
+    (function hubungkanSarprasKeGoogleSheet() {
+  var GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw5jXSs2ILqjGJH-QNTI-znJCaHtOcrb8AAMwjDaz69lKXMTCAjBSrsAKNTO29_sCdC5Q/exec";
+  var GAS_ADMIN_TOKEN = "admin123";
+
+  function pemetaanBagianKeSheet(bagianList) {
+    return (bagianList || []).map(function (nama, idx) {
+      return {
+        id: "BAG-" + (idx + 1),
+        jenjang: jenjangAktif,
+        tahun: tahunAktif,
+        namaBagian: String(nama || "").trim(),
+        penanggungJawab: "",
+        keterangan: "Bagian Sarana SIMSARPRAS",
+        diperbarui: new Date().toISOString()
+      };
+    });
+  }
+
+  function pemetaanInventarisKeSheet(invList) {
+    return (invList || []).map(function (raw, idx) {
+      var it = normalisasiItemInventaris(raw);
+      return {
+        id: "INV-" + (idx + 1),
+        jenjang: jenjangAktif,
+        tahun: tahunAktif,
+        kodeBarang: it.kode,
+        namaBarang: it.nama,
+        bagianSarana: it.kelompok === "PRASARANA" ? "1. PRASARANA" : it.bagian,
+        jumlah: it.qty,
+        kondisi: it.keadaan,
+        lokasi: it.bagian || it.kelompok,
+        tahunPerolehan: it.thn,
+        sumberDana: it.sumber,
+        keterangan: it.ket,
+        diperbarui: new Date().toISOString()
+      };
+    });
+  }
+
+  function pemetaanPemeliharaanKeSheet(pmList) {
+    return (pmList || []).map(function (raw, idx) {
+      var it = normalisasiItemPemeliharaan(raw);
+      return {
+        noUrut: idx + 1,
+        namaSarana: it.nama,
+        bagianSarana: it.kodeLokasi,
+        jadwalPemeliharaan: it.frekuensi,
+        jenisTindakan: it.jenis,
+        kondisiPetugas: it.penanggungJawab,
+        keteranganBiaya: it.keterangan
+      };
+    });
+  }
+
+  window.kirimSarprasKeSpreadsheet = function () {
+    if (!GAS_WEB_APP_URL || GAS_WEB_APP_URL.indexOf("http") !== 0) return Promise.resolve(null);
+    var payload = {
+      action: "saveSarprasData",
+      token: GAS_ADMIN_TOKEN,
+      jenjang: jenjangAktif,
+      tahun: tahunAktif,
+      inventaris: pemetaanInventarisKeSheet(dataInventaris),
+      bagianSarana: pemetaanBagianKeSheet(daftarBagianSarana),
+      pemeliharaan: pemetaanPemeliharaanKeSheet(dataPemeliharaan)
+    };
+    return fetch(GAS_WEB_APP_URL, {
+      method: "POST",
+      body: JSON.stringify(payload)
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (res) {
+        if (res && res.status === "success") {
+          tambahAktivitas("Database Sheet", "Tersinkron ke Google Sheets (" + jenjangAktif + " • " + tahunAktif + ")");
+        }
+        return res;
+      })
+      .catch(function () { return null; });
+  };
+
+  window.ambilSarprasDariSpreadsheet = function () {
+    if (!GAS_WEB_APP_URL || GAS_WEB_APP_URL.indexOf("http") !== 0) return Promise.resolve(null);
+    var url = GAS_WEB_APP_URL +
+      "?action=getSarpras" +
+      "&jenjang=" + encodeURIComponent(jenjangAktif) +
+      "&tahun=" + encodeURIComponent(tahunAktif) +
+      "&_t=" + Date.now();
+
+    return fetch(url)
+      .then(function (r) { return r.json(); })
+      .then(function (res) {
+        if (!res || res.status !== "success") return res;
+
+        var adaInvServer = Array.isArray(res.inventaris) && res.inventaris.length > 0;
+        var adaBagServer = Array.isArray(res.bagianSarana) && res.bagianSarana.length > 0;
+        var adaPmServer = Array.isArray(res.pemeliharaan) && res.pemeliharaan.length > 0;
+
+        if (!adaInvServer && !adaBagServer && !adaPmServer) {
+          return window.kirimSarprasKeSpreadsheet();
+        }
+
+        if (adaBagServer) {
+          var bagBaru = res.bagianSarana.map(function (b) {
+            return String(b.Nama_Bagian || b.namaBagian || "").trim();
+          }).filter(Boolean);
+          daftarBagianSarana = gabungkanDaftarBagian(bagBaru);
+        }
+
+        if (adaInvServer) {
+          dataInventaris = res.inventaris.map(function (row) {
+            var bagRaw = String(row.Bagian_Sarana || row.bagianSarana || "").trim();
+            var isPrasarana = bagRaw.toUpperCase().indexOf("PRASARANA") !== -1 ||
+              String(row.Lokasi || "").toUpperCase().indexOf("PRASARANA") !== -1;
+            return normalisasiItemInventaris({
+              kelompok: isPrasarana ? "PRASARANA" : "SARANA",
+              bagian: isPrasarana ? "" : (bagRaw || String(row.Lokasi || "").trim()),
+              nama: row.Nama_Barang || row.namaBarang || "",
+              thn: row.Tahun_Perolehan || row.Tahun || tahunAktif,
+              qty: row.Jumlah || row.jumlah || 0,
+              kode: row.Kode_Barang || row.kodeBarang || "",
+              sumber: row.Sumber_Dana || row.sumberDana || "BOS",
+              keadaan: row.Kondisi || row.kondisi || "Baik",
+              ket: row.Keterangan || row.keterangan || ""
+            });
+          });
+        }
+
+        if (adaPmServer) {
+          dataPemeliharaan = res.pemeliharaan.map(function (row) {
+            return normalisasiItemPemeliharaan({
+              nama: row.Nama_Sarana || row.namaSarana || "",
+              kodeLokasi: row.Bagian_Sarana || row.bagianSarana || "",
+              jenis: row.Jenis_Tindakan || row.jenisTindakan || "",
+              frekuensi: row.Jadwal_Pemeliharaan || row.jadwalPemeliharaan || "",
+              penanggungJawab: row.Kondisi_Petugas || row.kondisiPetugas || "",
+              keterangan: row.Keterangan_Biaya || row.keteranganBiaya || ""
+            });
+          });
+        }
+
+        simpanStorage();
+        renderDropdownBagianSarana();
+        renderFilterBagianInventaris();
+        renderInventaris();
+        renderPemeliharaan();
+        return res;
+      })
+      .catch(function () { return null; });
+  };
+
+  var simpanStorageAsli = simpanStorage;
+  simpanStorage = function () {
+    simpanStorageAsli();
+    window.kirimSarprasKeSpreadsheet();
+  };
+
+  var prosesLoginAsli = prosesLogin;
+  prosesLogin = function (event) {
+    prosesLoginAsli(event);
+    if (document.getElementById("appShell").classList.contains("active")) {
+      window.ambilSarprasDariSpreadsheet();
+    }
+  };
+})();
+  </script>
+</body>
+</html>
