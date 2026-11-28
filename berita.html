@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Berita ASER | PonPes As'adiyah Ereng-Ereng</title>
     <meta name="description" content="Berita ASER dan dokumentasi kegiatan terbaru PonPes As'adiyah Ereng-Ereng Kabupaten Bantaeng.">
-
     <!-- Kartu Pratinjau Gambar Besar WhatsApp & Media Sosial -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="PonPes As'adiyah Ereng-Ereng">
@@ -17,7 +16,6 @@
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://asadiyah-ereng-ereng.my.id/keluarga%20besar.png">
-
     <link rel="icon" type="image/png" href="logoaser.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -56,7 +54,6 @@
     </style>
 </head>
 <body class="bg-white text-slate-800 font-sans antialiased min-h-screen flex flex-col">
-
     <!-- Header & Bar Menu Lengkap PonPes As'adiyah Ereng-Ereng -->
     <header class="w-full bg-gradient-to-r from-[#e87a2e] via-[#f08b43] to-[#e87a2e] text-white shadow-md sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-3.5 pb-3">
@@ -73,7 +70,6 @@
                         </span>
                     </div>
                 </a>
-
                 <div class="flex items-center space-x-2 sm:space-x-2.5">
                     <div class="hidden sm:flex items-center space-x-2">
                         <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-8 h-8 rounded-full bg-white/15 hover:bg-white/30 border border-white/35 flex items-center justify-center text-white text-xs transition">
@@ -92,24 +88,20 @@
                             <i class="fa-brands fa-youtube"></i>
                         </a>
                     </div>
-
                     <a href="index.html#admin" class="bg-[#15803d] hover:bg-emerald-800 px-3.5 py-2 rounded-xl text-xs font-bold shadow flex items-center space-x-1.5 transition text-white border border-white/30">
                         <i class="fa-solid fa-lock text-[11px]"></i>
                         <span>Admin</span>
                     </a>
-
                     <!-- Tombol Hamburger Mobile -->
                     <button type="button" onclick="toggleMobileBeritaMenu()" class="lg:hidden bg-white/15 hover:bg-white/25 border border-white/35 rounded-xl p-2 text-white" aria-label="Buka Menu">
                         <i class="fa-solid fa-bars text-sm"></i>
                     </button>
                 </div>
             </div>
-
             <!-- Baris Bawah: Menu Navigasi Utama & Kotak Pencarian (Desktop) -->
             <div class="hidden lg:flex items-center justify-between gap-4 pt-3">
                 <nav class="flex items-center flex-wrap gap-1.5 text-xs font-bold">
                     <a href="index.html" class="nav-pill-item px-3.5 py-2">Beranda</a>
-
                     <div class="relative group">
                         <a href="index.html#profil" class="nav-pill-item px-3.5 py-2 inline-flex items-center space-x-1">
                             <span>Profil</span>
@@ -123,7 +115,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="relative group">
                         <a href="index.html#program" class="nav-pill-item px-3.5 py-2 inline-flex items-center space-x-1">
                             <span>Prog. Unggulan</span>
@@ -136,7 +127,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="relative group">
                         <a href="index.html#wakamad" class="nav-pill-item px-3.5 py-2 inline-flex items-center space-x-1">
                             <span>Wakamad</span>
@@ -149,7 +139,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="relative group">
                         <a href="index.html#prestasi" class="nav-pill-item px-3.5 py-2 inline-flex items-center space-x-1">
                             <span>Prestasi</span>
@@ -161,7 +150,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="relative group">
                         <a href="index.html#spmb" class="nav-pill-item px-3.5 py-2 inline-flex items-center space-x-1">
                             <span>SPMB</span>
@@ -173,11 +161,9 @@
                             </div>
                         </div>
                     </div>
-
                     <a href="index.html#berita" class="nav-pill-item px-3.5 py-2 bg-white/25 border-white/80">Berita</a>
                     <a href="index.html#kontak" class="nav-pill-item px-3.5 py-2">Kontak</a>
                 </nav>
-
                 <!-- Kotak Pencarian Berita Cepat -->
                 <form onsubmit="handleQuickNewsSearch(event)" class="relative w-64">
                     <input
@@ -191,7 +177,6 @@
                     </button>
                 </form>
             </div>
-
             <!-- Menu Navigasi Mobile -->
             <div id="mobile-berita-nav" class="hidden lg:hidden pt-3 mt-3 border-t border-white/25 space-y-2.5">
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-xs font-bold">
@@ -207,7 +192,6 @@
             </div>
         </div>
     </header>
-
     <!-- Konten Utama Halaman Baca Berita (Gaya Kemenag RI) -->
     <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-12">
         <!-- Indikator Memuat -->
@@ -215,7 +199,6 @@
             <i class="fa-solid fa-spinner fa-spin text-3xl text-[#15803d]"></i>
             <p class="text-sm font-semibold text-slate-600">Memuat artikel Berita ASER...</p>
         </div>
-
         <!-- BAGIAN 1: ARTIKEL UTAMA -->
         <article id="article-card" class="hidden max-w-3xl mx-auto space-y-6">
             <!-- Breadcrumb Navigasi (Beranda > Berita ASER) -->
@@ -224,19 +207,16 @@
                 <i class="fa-solid fa-chevron-right text-[9px] text-slate-400"></i>
                 <span class="text-slate-700 font-semibold">Berita ASER</span>
             </nav>
-
             <!-- Lencana Hijau BERITA ASER -->
             <div>
                 <span class="inline-block bg-[#15803d] text-white text-[11px] font-bold px-3 py-1 rounded-sm uppercase tracking-wider">
                     BERITA ASER
                 </span>
             </div>
-
             <!-- Judul Utama Berita -->
             <h1 id="detail-judul" class="text-2xl sm:text-4xl font-extrabold text-slate-900 leading-tight tracking-tight">
                 Judul Berita
             </h1>
-
             <!-- Info Penulis & Tanggal dengan Logo -->
             <div class="flex items-center space-x-3 pb-1">
                 <img src="logoaser.png" onerror="this.onerror=null;this.src='https://placehold.co/64x64/15803d/ffffff?text=A';" alt="Tim Media ASER" class="w-9 h-9 rounded-full object-contain bg-emerald-50 border border-emerald-200 p-0.5">
@@ -245,7 +225,6 @@
                     <p id="detail-tanggal" class="text-slate-500">-</p>
                 </div>
             </div>
-
             <!-- Foto Utama Besar di Tengah -->
             <figure class="space-y-2">
                 <div class="w-full rounded-xl overflow-hidden bg-slate-100 border border-slate-200 shadow-xs">
@@ -261,12 +240,10 @@
                     Dokumentasi PonPes As'adiyah Ereng-Ereng
                 </figcaption>
             </figure>
-
             <!-- Isi Berita Lengkap -->
             <div id="detail-isi" class="text-slate-800 text-base sm:text-[17px] leading-relaxed whitespace-pre-line pt-2">
             </div>
-
-            <!-- Bagikan Artikel (Copy Link Bersih Tanpa .html & Share WhatsApp) -->
+            <!-- Bagikan Artikel (Copy Link Statis per Berita & Share WhatsApp) -->
             <div class="mt-8 pt-6 border-t border-slate-200 bg-slate-50 rounded-2xl p-4 sm:p-5 space-y-3">
                 <p class="text-xs font-extrabold text-slate-700 uppercase tracking-wider flex items-center space-x-1.5">
                     <i class="fa-solid fa-share-nodes text-[#15803d]"></i>
@@ -301,7 +278,6 @@
                 </p>
             </div>
         </article>
-
         <!-- BAGIAN 2: BERITA ASER LAINNYA (Kiri) & TERPOPULER (Kanan) DI BAWAH ARTIKEL -->
         <section id="related-news-section" class="hidden pt-10 border-t-2 border-slate-200">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -312,7 +288,7 @@
                             <span class="w-1.5 h-6 bg-[#e87a2e] rounded-full inline-block"></span>
                             <span>BERITA ASER</span>
                         </h2>
-                        <a href="index.html#berita" class="text-xs font-bold text-slate-500 hover:text-[#15803d] transition flex items-center space-x-1">
+                        <a href="berita/" class="text-xs font-bold text-slate-500 hover:text-[#15803d] transition flex items-center space-x-1">
                             <span>Lainnya</span>
                             <i class="fa-solid fa-chevron-right text-[10px]"></i>
                         </a>
@@ -320,7 +296,6 @@
                     <div id="related-grid-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
                     </div>
                 </div>
-
                 <!-- Kolom Kanan: TERPOPULER bernomor 01, 02, 03, 04 + Thumbnail -->
                 <div class="lg:col-span-4 space-y-5">
                     <div class="border-b border-slate-200 pb-3">
@@ -335,7 +310,6 @@
             </div>
         </section>
     </main>
-
     <!-- Footer Lengkap Khas PonPes As'adiyah Ereng-Ereng -->
     <footer class="bg-[#1b2028] text-white pt-12 pb-8 border-t border-slate-800 mt-12">
         <div class="max-w-6xl mx-auto px-4 sm:px-6">
@@ -348,17 +322,14 @@
                             PONPES AS'ADIYAH ERENG-ERENG
                         </span>
                     </a>
-
                     <p class="text-xs sm:text-[13px] text-slate-300 leading-relaxed max-w-sm">
                         Jl. H. Muh. Thahir No. 4, Kelurahan Ereng-Ereng, Kecamatan Tompobulu, Kabupaten Bantaeng, Sulawesi Selatan
                     </p>
-
                     <div class="space-y-1 text-xs text-slate-300 pt-1">
                         <p><strong class="text-white font-bold">Telepon / WhatsApp:</strong> 0851-6655-6672 / 0812-4331-8115</p>
                         <p><strong class="text-white font-bold">Email:</strong> Aser@madrasahebat.com</p>
                     </div>
                 </div>
-
                 <!-- Kolom 2: PONDOK -->
                 <div class="md:col-span-2 space-y-3">
                     <h3 class="text-xs font-extrabold uppercase tracking-wider text-white">PONDOK</h3>
@@ -369,7 +340,6 @@
                         <li><a href="index.html#spmb" class="hover:text-white transition">Pendaftaran SPMB</a></li>
                     </ul>
                 </div>
-
                 <!-- Kolom 3: INFORMASI -->
                 <div class="md:col-span-2 space-y-3">
                     <h3 class="text-xs font-extrabold uppercase tracking-wider text-white">INFORMASI</h3>
@@ -379,7 +349,6 @@
                         <li><a href="index.html#kontak" class="hover:text-white transition">Kontak Resmi</a></li>
                     </ul>
                 </div>
-
                 <!-- Kolom 4: IKUTI KAMI -->
                 <div class="md:col-span-3 space-y-3">
                     <h3 class="text-xs font-extrabold uppercase tracking-wider text-white">IKUTI KAMI</h3>
@@ -402,18 +371,18 @@
                     </div>
                 </div>
             </div>
-
             <!-- Baris Hak Cipta Paling Bawah -->
             <div class="pt-6 text-center text-xs text-slate-300 font-medium">
                 <p>&copy; 2026 Ponpes As'adiyah Ereng-Ereng. Hak Cipta Dilindungi.</p>
             </div>
         </div>
     </footer>
-
     <script>
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw5jXSs2ILqjGJH-QNTI-znJCaHtOcrb8AAMwjDaz69lKXMTCAjBSrsAKNTO29_sCdC5Q/exec";
         const CACHE_KEY = "ponpes_aser_web_cache_v3";
+        const SITE_ORIGIN = "https://asadiyah-ereng-ereng.my.id";
         let allNewsItems = [];
+        let activeArticleSlug = "";
 
         function cleanBrowserUrlBar() {
             if (window.location.pathname.endsWith(".html")) {
@@ -427,6 +396,37 @@
             if (nav) nav.classList.toggle("hidden");
         }
 
+        function buatSlugBerita(judul, index) {
+            const slug = String(judul || "")
+                .toLowerCase()
+                .replace(/[^a-z0-9\s-]/g, "")
+                .trim()
+                .replace(/\s+/g, "-")
+                .replace(/-+/g, "-");
+            return slug || `berita-${index + 1}`;
+        }
+
+        function resolveSlugFromLocation(beritaList) {
+            const hashSlug = decodeURIComponent(window.location.hash.replace(/^#/, "")).trim().toLowerCase();
+            if (hashSlug) return hashSlug;
+
+            const parts = window.location.pathname.split("/").filter(Boolean);
+            const beritaIdx = parts.indexOf("berita");
+            if (beritaIdx !== -1 && parts[beritaIdx + 1]) {
+                return decodeURIComponent(parts[beritaIdx + 1]).trim().toLowerCase();
+            }
+
+            if (Array.isArray(beritaList) && beritaList.length > 0) {
+                return buatSlugBerita(beritaList[0].Judul, 0);
+            }
+            return "berita-1";
+        }
+
+        function getStaticShareUrl(slug) {
+            const finalSlug = slug || activeArticleSlug || "berita-1";
+            return `${SITE_ORIGIN}/berita/${finalSlug}/`;
+        }
+
         function handleQuickNewsSearch(event) {
             event.preventDefault();
             const q = (document.getElementById("header-news-search")?.value || "").trim().toLowerCase();
@@ -436,20 +436,11 @@
                 String(item.Isi_Berita || "").toLowerCase().includes(q)
             );
             if (foundIdx >= 0) {
-                window.location.hash = `#${buatSlugBerita(allNewsItems[foundIdx].Judul, foundIdx)}`;
+                const targetSlug = buatSlugBerita(allNewsItems[foundIdx].Judul, foundIdx);
+                window.location.href = `berita/${targetSlug}/`;
             } else {
                 window.location.href = "index.html#berita";
             }
-        }
-
-        function buatSlugBerita(judul, index) {
-            const slug = String(judul || "")
-                .toLowerCase()
-                .replace(/[^a-z0-9\s-]/g, "")
-                .trim()
-                .replace(/\s+/g, "-")
-                .replace(/-+/g, "-");
-            return slug || `berita-${index + 1}`;
         }
 
         function optimizeDriveImage(url, size) {
@@ -490,27 +481,20 @@
             });
         }
 
-        function getCleanShareUrl() {
-            const cleanPath = window.location.pathname.replace(/\.html$/i, "");
-            return `${window.location.origin}${cleanPath}${window.location.hash}`;
-        }
-
         function renderRelatedAndPopular(beritaList, currentItem) {
             const relatedSection = document.getElementById("related-news-section");
             const gridContainer = document.getElementById("related-grid-container");
             const popularContainer = document.getElementById("related-popular-container");
-
             if (!Array.isArray(beritaList) || beritaList.length === 0) return;
 
             const others = beritaList.filter(b => b !== currentItem);
             const gridList = (others.length > 0 ? others : beritaList).slice(0, 6);
-
             gridContainer.innerHTML = gridList.map((item, idx) => {
                 const realIdx = beritaList.indexOf(item);
                 const slug = buatSlugBerita(item.Judul, realIdx >= 0 ? realIdx : idx);
                 const fallbackImg = `https://placehold.co/600x400/e2e8f0/1e293b?text=${encodeURIComponent(item.Judul || "Berita ASER")}`;
                 return `
-                    <a href="#${slug}" class="group block space-y-2.5">
+                    <a href="berita/${slug}/" class="group block space-y-2.5">
                         <div class="h-36 rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80">
                             <img src="${optimizeDriveImage(item.URL_Foto, 600)}" onerror="this.onerror=null;this.src='${fallbackImg}';" alt="${item.Judul}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                         </div>
@@ -530,7 +514,7 @@
                 const nomor = String(idx + 1).padStart(2, "0");
                 const fallbackImg = "https://placehold.co/200x200/e2e8f0/1e293b?text=ASER";
                 return `
-                    <a href="#${slug}" class="flex items-start justify-between gap-3 pb-3.5 border-b border-slate-200/80 group">
+                    <a href="berita/${slug}/" class="flex items-start justify-between gap-3 pb-3.5 border-b border-slate-200/80 group">
                         <div class="flex items-start gap-2.5 flex-1 min-w-0">
                             <span class="text-xl font-extrabold text-slate-300 group-hover:text-[#15803d] transition leading-none pt-0.5">${nomor}</span>
                             <div class="space-y-1 min-w-0">
@@ -549,47 +533,58 @@
             relatedSection.classList.remove("hidden");
         }
 
-        function renderArticle(item) {
+        function renderArticle(item, resolvedSlug) {
             if (!item) return;
             cleanBrowserUrlBar();
+
+            const itemIdx = allNewsItems.indexOf(item);
+            const canonicalSlug = buatSlugBerita(item.Judul, itemIdx >= 0 ? itemIdx : 0);
+            activeArticleSlug = resolvedSlug || canonicalSlug || "berita-1";
+
             document.title = `${item.Judul} | Berita ASER`;
             document.getElementById("detail-judul").innerText = item.Judul || "Berita ASER";
             document.getElementById("detail-caption").innerText = item.Judul || "Dokumentasi PonPes As'adiyah Ereng-Ereng";
             document.getElementById("detail-tanggal").innerText = formatTanggalLengkap(item.Tanggal);
             document.getElementById("detail-isi").innerText = item.Isi_Berita || "";
+
             const fotoUrl = optimizeDriveImage(item.URL_Foto, 1200) || "keluarga besar.png";
             document.getElementById("detail-foto").src = fotoUrl;
-            document.getElementById("share-link-input").value = getCleanShareUrl();
+            document.getElementById("share-link-input").value = getStaticShareUrl(activeArticleSlug);
 
             document.getElementById("loading-box").classList.add("hidden");
             document.getElementById("article-card").classList.remove("hidden");
-
             renderRelatedAndPopular(allNewsItems, item);
         }
 
         function findTargetNews(beritaList) {
-            if (!Array.isArray(beritaList) || beritaList.length === 0) return null;
-            const hashSlug = decodeURIComponent(window.location.hash.replace(/^#/, "")).trim().toLowerCase();
+            if (!Array.isArray(beritaList) || beritaList.length === 0) return { item: null, slug: "berita-1" };
+            const targetSlug = resolveSlugFromLocation(beritaList);
 
-            if (hashSlug) {
-                const bySlug = beritaList.find((b, i) => buatSlugBerita(b.Judul, i) === hashSlug);
-                if (bySlug) return bySlug;
+            if (targetSlug) {
+                const bySlug = beritaList.find((b, i) => buatSlugBerita(b.Judul, i) === targetSlug);
+                if (bySlug) return { item: bySlug, slug: targetSlug };
 
-                const matchIndex = hashSlug.match(/^berita-(\d+)$/);
+                const matchIndex = targetSlug.match(/^berita-(\d+)$/);
                 if (matchIndex) {
                     const idx = parseInt(matchIndex[1], 10) - 1;
-                    if (beritaList[idx]) return beritaList[idx];
+                    if (beritaList[idx]) return { item: beritaList[idx], slug: targetSlug };
                 }
             }
-            return beritaList[0];
+
+            const defaultItem = beritaList[0];
+            return { item: defaultItem, slug: buatSlugBerita(defaultItem.Judul, 0) };
         }
 
         function copyBeritaLink() {
             const input = document.getElementById("share-link-input");
-            input.value = getCleanShareUrl();
+            const shareUrl = getStaticShareUrl(activeArticleSlug);
+            input.value = shareUrl;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(shareUrl).catch(() => {});
+            }
             input.select();
             input.setSelectionRange(0, 99999);
-            document.execCommand("copy");
+            try { document.execCommand("copy"); } catch (e) {}
             const msg = document.getElementById("copy-success-msg");
             msg.classList.remove("hidden");
             setTimeout(() => msg.classList.add("hidden"), 4000);
@@ -597,7 +592,7 @@
 
         function shareBeritaWhatsApp() {
             const judul = document.getElementById("detail-judul").innerText;
-            const url = getCleanShareUrl();
+            const url = getStaticShareUrl(activeArticleSlug);
             const pesan = `*BERITA ASER - ${judul}*\n\nBaca selengkapnya di Website Resmi PonPes As'adiyah Ereng-Ereng:\n${url}`;
             window.open(`https://wa.me/?text=${encodeURIComponent(pesan)}`, "_blank", "noopener,noreferrer");
         }
@@ -605,9 +600,9 @@
         window.addEventListener("hashchange", () => {
             cleanBrowserUrlBar();
             if (allNewsItems.length > 0) {
-                const found = findTargetNews(allNewsItems);
-                if (found) {
-                    renderArticle(found);
+                const { item, slug } = findTargetNews(allNewsItems);
+                if (item) {
+                    renderArticle(item, slug);
                     window.scrollTo({ top: 0, behavior: "smooth" });
                 }
             }
@@ -620,9 +615,9 @@
                 const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
                 if (cached && Array.isArray(cached.berita) && cached.berita.length > 0) {
                     allNewsItems = cached.berita;
-                    const found = findTargetNews(allNewsItems);
-                    if (found) {
-                        renderArticle(found);
+                    const { item, slug } = findTargetNews(allNewsItems);
+                    if (item) {
+                        renderArticle(item, slug);
                         renderedFromCache = true;
                     }
                 }
@@ -634,15 +629,15 @@
                     if (data && data.status === "success" && Array.isArray(data.berita) && data.berita.length > 0) {
                         allNewsItems = data.berita;
                         try { localStorage.setItem(CACHE_KEY, JSON.stringify(data)); } catch (e) {}
-                        const found = findTargetNews(allNewsItems);
-                        if (found) renderArticle(found);
+                        const { item, slug } = findTargetNews(allNewsItems);
+                        if (item) renderArticle(item, slug);
                     } else if (!renderedFromCache) {
                         renderArticle({
                             Judul: "Berita PonPes As'adiyah Ereng-Ereng",
                             Tanggal: new Date().toISOString(),
                             URL_Foto: "keluarga besar.png",
                             Isi_Berita: "Silakan kembali ke beranda untuk melihat daftar berita terbaru."
-                        });
+                        }, "berita-1");
                     }
                 })
                 .catch(() => {
@@ -652,7 +647,7 @@
                             Tanggal: new Date().toISOString(),
                             URL_Foto: "keluarga besar.png",
                             Isi_Berita: "Silakan kembali ke beranda untuk melihat daftar berita terbaru."
-                        });
+                        }, "berita-1");
                     }
                 });
         });
