@@ -94,7 +94,6 @@
         #mobile-menu-drawer.translate-x-0 {
             transform: translateX(0);
         }
-
         /* Bar Running Text Statistik Siswa (Oranye Lembut + Tulisan Putih) */
         .stats-bar-shell {
             background: linear-gradient(90deg, #e87a2e 0%, #f08b43 55%, #e87a2e 100%);
@@ -180,7 +179,6 @@
                 0 0 10px rgba(255, 255, 255, 0.9),
                 0 0 18px rgba(255, 235, 180, 0.75);
         }
-
         /* Gaya Oranye Serasi Menu & Submenu Khusus Modal Login Admin */
         .neon-login-card {
             font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
@@ -374,7 +372,7 @@
                         <i class="fa-solid fa-chevron-down text-[10px]"></i>
                     </button>
                     <div class="submenu-glow-box absolute left-0 w-48 p-2 space-y-1.5 hidden group-hover:block z-50">
-                        <a href="#kontak" class="submenu-glow-link block px-3.5 py-2 text-xs">Sarpras</a>
+                        <a href="sarpras.html" target="_blank" rel="noopener noreferrer" class="submenu-glow-link block px-3.5 py-2 text-xs">Sarpras</a>
                         <a href="#prog-unggulan-ma" class="submenu-glow-link block px-3.5 py-2 text-xs">Kurikulum</a>
                         <a href="#dokumentasi-section" class="submenu-glow-link block px-3.5 py-2 text-xs">Kesiswaan</a>
                         <a href="#kontak" class="submenu-glow-link block px-3.5 py-2 text-xs">Perpustakaan</a>
@@ -483,7 +481,7 @@
                         <i class="fa-solid fa-chevron-down text-[10px]"></i>
                     </button>
                     <div id="mobile-sub-wakamad" class="hidden pl-7 space-y-1 mt-1 border-l border-slate-700 ml-3">
-                        <a href="#kontak" onclick="toggleMobileMenu()" class="block py-1.5 px-2 text-slate-300 hover:text-yellow-300">Sarpras</a>
+                        <a href="sarpras.html" target="_blank" rel="noopener noreferrer" onclick="toggleMobileMenu()" class="block py-1.5 px-2 text-slate-300 hover:text-yellow-300">Sarpras</a>
                         <a href="#prog-unggulan-ma" onclick="toggleMobileMenu()" class="block py-1.5 px-2 text-slate-300 hover:text-yellow-300">Kurikulum</a>
                         <a href="#dokumentasi-section" onclick="toggleMobileMenu()" class="block py-1.5 px-2 text-slate-300 hover:text-yellow-300">Kesiswaan</a>
                         <a href="#kontak" onclick="toggleMobileMenu()" class="block py-1.5 px-2 text-slate-300 hover:text-yellow-300">Perpustakaan</a>
@@ -992,7 +990,6 @@
                                 <input type="number" min="0" id="stat-input-ma-p" oninput="updateStatsPreview()" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm bg-white focus:outline-none focus:border-orange-500" placeholder=".....">
                             </div>
                         </div>
-
                         <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
                             <div class="flex items-center justify-between">
                                 <span class="text-xs font-extrabold uppercase tracking-wider text-slate-800">Jenjang MTs</span>
@@ -1008,12 +1005,10 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="bg-orange-50 border border-orange-200 rounded-xl px-4 py-3 flex items-center justify-between text-xs sm:text-sm">
                         <span class="font-semibold text-orange-950">Total Murid Tahun 2025/2026 (Otomatis MA + MTs):</span>
                         <span id="preview-total-all" class="font-extrabold text-orange-700 text-base">.....</span>
                     </div>
-
                     <button type="submit" id="btn-submit-stats" class="w-full bg-[#e87a2e] hover:bg-[#c85a17] text-white font-semibold py-3 rounded-xl text-sm transition shadow cursor-pointer">
                         Simpan & Perbarui Statistik Siswa
                     </button>
@@ -1195,7 +1190,6 @@
         let activeAdminToken = "";
         let dokSlideTimer = null;
         let dokSlideIndex = 0;
-
         function parseStatNumber(val) {
             if (val === null || val === undefined) return null;
             const trimmed = String(val).trim();
@@ -1203,21 +1197,17 @@
             const num = Number(trimmed);
             return Number.isFinite(num) && num >= 0 ? Math.floor(num) : null;
         }
-
         function computeStatistikSummary(rawStats = {}) {
             const maL = parseStatNumber(rawStats.maLaki);
             const maP = parseStatNumber(rawStats.maPerempuan);
             const mtsL = parseStatNumber(rawStats.mtsLaki);
             const mtsP = parseStatNumber(rawStats.mtsPerempuan);
-
             const hasMa = maL !== null || maP !== null;
             const hasMts = mtsL !== null || mtsP !== null;
             const totalMa = hasMa ? ((maL || 0) + (maP || 0)) : null;
             const totalMts = hasMts ? ((mtsL || 0) + (mtsP || 0)) : null;
             const totalSemua = (hasMa || hasMts) ? ((totalMa || 0) + (totalMts || 0)) : null;
-
             const fmt = (n) => (n === null ? "....." : n.toLocaleString("id-ID"));
-
             return {
                 tahunAjaran: String(rawStats.tahunAjaran || "2025/2026"),
                 totalSemua: fmt(totalSemua),
@@ -1229,7 +1219,6 @@
                 mtsPerempuan: fmt(mtsP)
             };
         }
-
         function renderStatistikSiswa(rawStats = {}) {
             globalStatistikSiswa = {
                 tahunAjaran: String(rawStats.tahunAjaran || "2025/2026"),
@@ -1238,11 +1227,9 @@
                 mtsLaki: rawStats.mtsLaki !== undefined && rawStats.mtsLaki !== null ? String(rawStats.mtsLaki).trim() : "",
                 mtsPerempuan: rawStats.mtsPerempuan !== undefined && rawStats.mtsPerempuan !== null ? String(rawStats.mtsPerempuan).trim() : ""
             };
-
             const s = computeStatistikSummary(globalStatistikSiswa);
             const track = document.getElementById("stats-marquee-track");
             if (!track) return;
-
             const items = [
                 { label: `Total Murid Tahun ${s.tahunAjaran}`, value: s.totalSemua, highlight: true },
                 { label: "Total MA", value: s.totalMa, highlight: true },
@@ -1252,7 +1239,6 @@
                 { label: "MTs Laki-laki", value: s.mtsLaki, highlight: false },
                 { label: "MTs Perempuan", value: s.mtsPerempuan, highlight: false }
             ];
-
             const renderSegment = () => items.map(item => `
                 <span class="inline-flex items-center gap-2.5 whitespace-nowrap">
                     <span class="${item.highlight ? "font-bold" : "font-medium"} text-white tracking-wide">${item.label}</span>
@@ -1260,7 +1246,6 @@
                 </span>
                 <span class="mx-5 text-white/75 select-none" aria-hidden="true">&bull;</span>
             `).join("");
-
             track.innerHTML = `
                 <div class="inline-flex items-center pl-5">
                     ${renderSegment()}
@@ -1271,7 +1256,6 @@
             `;
             prefillStatsForm();
         }
-
         function prefillStatsForm() {
             const elMaL = document.getElementById("stat-input-ma-l");
             const elMaP = document.getElementById("stat-input-ma-p");
@@ -1283,7 +1267,6 @@
             if (elMtsP) elMtsP.value = globalStatistikSiswa.mtsPerempuan || "";
             updateStatsPreview();
         }
-
         function updateStatsPreview() {
             const draft = {
                 tahunAjaran: "2025/2026",
@@ -1300,7 +1283,6 @@
             if (elMts) elMts.innerText = s.totalMts;
             if (elAll) elAll.innerText = s.totalSemua;
         }
-
         // Menampilkan modal notifikasi di tengah layar tanpa alert()
         function showCenterNotif(message, title = "Notifikasi", type = "info") {
             const modal = document.getElementById("custom-notif-modal");
@@ -1910,11 +1892,9 @@
             const maPerempuan = document.getElementById("stat-input-ma-p").value.trim();
             const mtsLaki = document.getElementById("stat-input-mts-l").value.trim();
             const mtsPerempuan = document.getElementById("stat-input-mts-p").value.trim();
-
             const btn = document.getElementById("btn-submit-stats");
             btn.innerText = "Menyimpan Statistik...";
             btn.disabled = true;
-
             const updatedStats = {
                 tahunAjaran: "2025/2026",
                 maLaki: maLaki,
@@ -1922,13 +1902,11 @@
                 mtsLaki: mtsLaki,
                 mtsPerempuan: mtsPerempuan
             };
-
             const payload = {
                 action: "updateStatistikSiswa",
                 token: activeAdminToken,
                 ...updatedStats
             };
-
             fetch(WEB_APP_URL, { method: "POST", body: JSON.stringify(payload) })
                 .then(res => res.json())
                 .then(res => {
