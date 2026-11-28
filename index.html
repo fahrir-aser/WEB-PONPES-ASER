@@ -577,30 +577,39 @@
         </div>
     </section>
     <!-- SECTION BERITA TERKINI & TERPOPULER -->
-    <section id="berita" class="py-16 bg-slate-50 border-t border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                <div class="lg:col-span-8">
-                    <div class="flex justify-between items-center mb-8 border-b-2 border-brandGreen pb-3">
-                        <h2 class="text-2xl font-bold text-slate-900 uppercase tracking-wide">Terkini</h2>
-                    </div>
-                    <div id="berita-terkini-container" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="col-span-full text-center py-10 text-slate-400">
-                            <i class="fa-solid fa-spinner fa-spin text-2xl mr-2"></i> Memuat berita terkini...
-                        </div>
-                    </div>
-                </div>
-                <div class="lg:col-span-4">
-                    <div class="mb-8 border-b-2 border-brandGreen pb-3">
-                        <h2 class="text-2xl font-bold text-slate-900 uppercase tracking-wide">Terpopuler</h2>
-                    </div>
-                    <div id="berita-terpopuler-container" class="space-y-6">
-                        <div class="text-center py-6 text-slate-400 text-sm">Memuat berita terpopuler...</div>
-                    </div>
-                </div>
+    <section id="berita" class="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Kolom Kiri (8 kolom): BERITA ASER 6 Kartu Grid 3 Kolom -->
+        <div class="lg:col-span-8 space-y-5">
+            <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                <h2 class="text-lg sm:text-xl font-extrabold text-[#15803d] uppercase tracking-wide flex items-center space-x-2">
+                    <span class="w-1.5 h-6 bg-[#e87a2e] rounded-full inline-block"></span>
+                    <span>BERITA ASER</span>
+                </h2>
+                <a href="berita#berita-1" class="text-xs font-bold text-slate-500 hover:text-[#15803d] transition flex items-center space-x-1">
+                    <span>Lainnya</span>
+                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                </a>
+            </div>
+
+            <div id="berita-grid-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
             </div>
         </div>
-    </section>
+
+        <!-- Kolom Kanan (4 kolom): TERPOPULER 8 Berita Bernomor 01 - 08 -->
+        <div class="lg:col-span-4 space-y-5">
+            <div class="border-b border-slate-200 pb-3">
+                <h2 class="text-lg sm:text-xl font-extrabold text-[#15803d] uppercase tracking-wide flex items-center space-x-2">
+                    <span class="w-1.5 h-6 bg-[#15803d] rounded-full inline-block"></span>
+                    <span>TERPOPULER</span>
+                </h2>
+            </div>
+
+            <div id="berita-popular-container" class="space-y-3.5">
+            </div>
+        </div>
+    </div>
+</section>
     <!-- SECTION PROGRAM UNGGULAN MA (3 KARTU SEJAJAR + BACA SELENGKAPNYA) -->
     <section id="prog-unggulan-ma" class="py-14 bg-white border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1807,59 +1816,122 @@
                 section.dataset.hoverBound = "true";
             }
         }
-        // Render berita terkini & terpopuler
+        // Render berita terkini (4 kartu) & terpopuler -> klik membuka halaman baru berita.html
+        function formatTanggalBeritaRapi(rawDate) {
+            if (!rawDate) return "";
+            const d = new Date(rawDate);
+            if (isNaN(d.getTime())) return String(rawDate);
+            return d.toLocaleDateString("id-ID", {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            });
+        }
+
+        function buatSlugBerita(judul, index) {
+            const slug = String(judul || "")
+                .toLowerCase()
+                .replace(/[^a-z0-9\s-]/g, "")
+                .trim()
+                .replace(/\s+/g, "-")
+                .replace(/-+/g, "-");
+            return slug || `berita-${index + 1}`;
+        }
+
+        function buildBeritaDetailUrl(item, index) {
+            const slug = buatSlugBerita(item.Judul, index);
+            return `berita#${slug}`;
+        }
+
+        function formatTanggalBeritaBeranda(rawDate) {
+            if (!rawDate) return "";
+            const d = new Date(rawDate);
+            if (isNaN(d.getTime())) return String(rawDate);
+            return d.toLocaleDateString("id-ID", {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            });
+        }
+
         function renderBeritaLayout(items) {
-            const terkiniContainer = document.getElementById("berita-terkini-container");
-            const terpopulerContainer = document.getElementById("berita-terpopuler-container");
-            if (!items || items.length === 0) {
-                terkiniContainer.innerHTML = '<div class="col-span-full text-center py-10 text-slate-400">Belum ada berita terkini.</div>';
-                terpopulerContainer.innerHTML = '<div class="text-center py-6 text-slate-400 text-sm">Belum ada berita terpopuler.</div>';
+            const gridContainer = document.getElementById("berita-grid-container");
+            const popularContainer = document.getElementById("berita-popular-container");
+            if (!gridContainer || !popularContainer) return;
+
+            if (!Array.isArray(items) || items.length === 0) {
+                gridContainer.innerHTML = `<p class="col-span-full text-xs text-slate-500">Belum ada berita yang dipublikasikan.</p>`;
+                popularContainer.innerHTML = "";
                 return;
             }
-            const terkiniList = items.slice(0, 2);
-            terkiniContainer.innerHTML = terkiniList.map((item, idx) => {
-                const fallbackImg = `https://placehold.co/800x500/e2e8f0/1e293b?text=${encodeURIComponent(item.Judul || "Berita")}`;
+
+            const mainGridItems = items.slice(0, 6);
+            gridContainer.innerHTML = mainGridItems.map((item, idx) => {
+                const detailUrl = buildBeritaDetailUrl(item, idx);
+                const fallbackImg = `https://placehold.co/600x400/e2e8f0/1e293b?text=${encodeURIComponent(item.Judul || "Berita ASER")}`;
                 return `
-                    <div onclick="openNewsDetail(${idx})" class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition border border-slate-100 cursor-pointer group">
-                        <div class="h-60 overflow-hidden relative bg-slate-100">
-                            <img src="${optimizeDriveImage(item.URL_Foto, 800)}" onerror="this.onerror=null;this.src='${fallbackImg}';" alt="${item.Judul}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <span class="absolute top-3 left-3 bg-brandGreen text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Nasional</span>
+                    <a href="${detailUrl}" class="group block space-y-2.5">
+                        <div class="h-40 rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 shadow-2xs">
+                            <img
+                                src="${optimizeDriveImage(item.URL_Foto, 600)}"
+                                onerror="this.onerror=null;this.src='${fallbackImg}';"
+                                alt="${item.Judul}"
+                                loading="lazy"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                            >
                         </div>
-                        <div class="p-6">
-                            <span class="text-xs text-slate-400 block mb-2">${item.Tanggal}</span>
-                            <h3 class="font-bold text-slate-900 text-lg mb-2 group-hover:text-brandGreen transition line-clamp-2">${item.Judul}</h3>
-                            <p class="text-slate-600 text-sm line-clamp-2">${item.Isi_Berita}</p>
+                        <div class="space-y-1">
+                            <h3 class="font-bold text-slate-900 text-xs sm:text-sm leading-snug group-hover:text-[#15803d] transition line-clamp-2">
+                                ${item.Judul}
+                            </h3>
+                            <span class="text-[11px] text-slate-400 block">${formatTanggalBeritaBeranda(item.Tanggal)}</span>
                         </div>
-                    </div>
+                    </a>
                 `;
             }).join("");
-            const terpopulerList = items.slice(2, 6);
-            if (terpopulerList.length === 0) {
-                terpopulerContainer.innerHTML = '<div class="text-center py-6 text-slate-400 text-sm">Belum ada berita terpopuler tambahan.</div>';
-                return;
-            }
-            terpopulerContainer.innerHTML = terpopulerList.map((item, index) => `
-                <div onclick="openNewsDetail(${index + 2})" class="flex items-start space-x-4 pb-4 border-b border-slate-200 cursor-pointer group">
-                    <span class="text-4xl font-extrabold text-brandGreen w-8 text-center flex-shrink-0">${index + 1}</span>
-                    <div class="flex-1">
-                        <span class="text-[11px] uppercase tracking-wider font-semibold text-brandGreen block mb-1">Nasional</span>
-                        <h4 class="font-bold text-slate-900 text-sm group-hover:text-brandGreen transition line-clamp-2">${item.Judul}</h4>
-                        <span class="text-xs text-slate-400 mt-1 block">${item.Tanggal}</span>
-                    </div>
-                </div>
-            `).join("");
+
+            const popularItems = items.slice(0, 8);
+            popularContainer.innerHTML = popularItems.map((item, idx) => {
+                const detailUrl = buildBeritaDetailUrl(item, idx);
+                const nomor = String(idx + 1).padStart(2, "0");
+                const fallbackImg = "https://placehold.co/200x200/e2e8f0/1e293b?text=ASER";
+                return `
+                    <a href="${detailUrl}" class="flex items-start justify-between gap-3 pb-3 border-b border-slate-200/80 group">
+                        <div class="flex items-start gap-2.5 flex-1 min-w-0">
+                            <span class="text-xl font-extrabold text-slate-300 group-hover:text-[#15803d] transition leading-none pt-0.5 select-none">
+                                ${nomor}
+                            </span>
+                            <div class="space-y-1 min-w-0">
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-[#15803d] block">
+                                    BERITA ASER
+                                </span>
+                                <h4 class="font-bold text-slate-900 text-xs leading-snug group-hover:text-[#15803d] transition line-clamp-2">
+                                    ${item.Judul}
+                                </h4>
+                                <span class="text-[10px] text-slate-400 block">
+                                    ${formatTanggalBeritaBeranda(item.Tanggal)}
+                                </span>
+                            </div>
+                        </div>
+                        <img
+                            src="${optimizeDriveImage(item.URL_Foto, 300)}"
+                            onerror="this.onerror=null;this.src='${fallbackImg}';"
+                            alt="${item.Judul}"
+                            loading="lazy"
+                            class="w-16 h-14 rounded-lg object-cover flex-shrink-0 bg-slate-100 border border-slate-200/70"
+                        >
+                    </a>
+                `;
+            }).join("");
         }
         function openNewsDetail(index) {
             const item = globalNewsData[index];
             if (!item) return;
-            document.getElementById("modal-news-title").innerText = item.Judul;
-            document.getElementById("modal-news-date").innerText = item.Tanggal;
-            document.getElementById("modal-news-img").src = optimizeDriveImage(item.URL_Foto, 1000);
-            document.getElementById("modal-news-content").innerText = item.Isi_Berita;
-            document.getElementById("news-modal").classList.remove("hidden");
+            window.open(buildBeritaDetailUrl(item, index), "_blank", "noopener,noreferrer");
         }
         function closeNewsModal() {
-            document.getElementById("news-modal").classList.add("hidden");
+            const m = document.getElementById("news-modal");
+            if (m) m.classList.add("hidden");
         }
         function syncCacheWithCurrentState() {
             try {
