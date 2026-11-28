@@ -419,10 +419,9 @@
         }
 
         function getStaticShareUrl(slug) {
-            const finalSlug = slug || activeArticleSlug || "berita-1";
-            const base = window.location.href.split("#")[0].split("?")[0];
-            return `${base}?slug=${encodeURIComponent(finalSlug)}`;
-        }
+  const finalSlug = slug || activeArticleSlug || "berita-1";
+  return `https://asadiyah-ereng-ereng.my.id/berita/${encodeURIComponent(finalSlug)}`;
+}
 
         function handleQuickNewsSearch(event) {
             event.preventDefault();
