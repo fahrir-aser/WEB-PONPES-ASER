@@ -288,7 +288,7 @@
                             <span class="w-1.5 h-6 bg-[#e87a2e] rounded-full inline-block"></span>
                             <span>BERITA ASER</span>
                         </h2>
-                        <a href="berita/" class="text-xs font-bold text-slate-500 hover:text-[#15803d] transition flex items-center space-x-1">
+                        <a href="index.html#berita" class="text-xs font-bold text-slate-500 hover:text-[#15803d] transition flex items-center space-x-1">
                             <span>Lainnya</span>
                             <i class="fa-solid fa-chevron-right text-[10px]"></i>
                         </a>
@@ -384,10 +384,13 @@
         let allNewsItems = [];
         let activeArticleSlug = "";
 
-       function cleanBrowserUrlBar() {
-            // Dibiarkan kosong agar URL tetap berita.html?slug=... dan tidak mengarah ke folder /berita/
+        function cleanBrowserUrlBar(slug) {
+            if (!slug || !window.history || !window.history.replaceState) return;
+            const cleanPath = `/berita/${encodeURIComponent(slug)}`;
+            if (window.location.pathname !== cleanPath) {
+                window.history.replaceState(null, "", cleanPath);
+            }
         }
-        
 
         function toggleMobileBeritaMenu() {
             const nav = document.getElementById("mobile-berita-nav");
@@ -405,13 +408,15 @@
         }
 
         function resolveSlugFromLocation(beritaList) {
+            const pathMatch = window.location.pathname.match(/\/berita\/([^/?#]+)/i);
+            if (pathMatch && pathMatch[1]) {
+                return decodeURIComponent(pathMatch[1]).trim().toLowerCase();
+            }
             const params = new URLSearchParams(window.location.search);
             const querySlug = (params.get("slug") || "").trim().toLowerCase();
             if (querySlug) return querySlug;
-
             const hashSlug = decodeURIComponent(window.location.hash.replace(/^#/, "")).trim().toLowerCase();
             if (hashSlug) return hashSlug;
-
             if (Array.isArray(beritaList) && beritaList.length > 0) {
                 return buatSlugBerita(beritaList[0].Judul, 0);
             }
@@ -419,9 +424,9 @@
         }
 
         function getStaticShareUrl(slug) {
-  const finalSlug = slug || activeArticleSlug || "berita-1";
-  return `https://asadiyah-ereng-ereng.my.id/berita/${encodeURIComponent(finalSlug)}`;
-}
+            const finalSlug = slug || activeArticleSlug || "berita-1";
+            return `${SITE_ORIGIN}/berita/${encodeURIComponent(finalSlug)}`;
+        }
 
         function handleQuickNewsSearch(event) {
             event.preventDefault();
@@ -433,7 +438,7 @@
             );
             if (foundIdx >= 0) {
                 const targetSlug = buatSlugBerita(allNewsItems[foundIdx].Judul, foundIdx);
-                window.location.href = `berita/${targetSlug}/`;
+                window.location.href = `${SITE_ORIGIN}/berita/${encodeURIComponent(targetSlug)}`;
             } else {
                 window.location.href = "index.html#berita";
             }
@@ -482,7 +487,6 @@
             const gridContainer = document.getElementById("related-grid-container");
             const popularContainer = document.getElementById("related-popular-container");
             if (!Array.isArray(beritaList) || beritaList.length === 0) return;
-
             const others = beritaList.filter(b => b !== currentItem);
             const gridList = (others.length > 0 ? others : beritaList).slice(0, 6);
             gridContainer.innerHTML = gridList.map((item, idx) => {
@@ -490,7 +494,7 @@
                 const slug = buatSlugBerita(item.Judul, realIdx >= 0 ? realIdx : idx);
                 const fallbackImg = `https://placehold.co/600x400/e2e8f0/1e293b?text=${encodeURIComponent(item.Judul || "Berita ASER")}`;
                 return `
-                    <a href="berita/${slug}/" class="group block space-y-2.5">
+                    <a href="${SITE_ORIGIN}/berita/${encodeURIComponent(slug)}" class="group block space-y-2.5">
                         <div class="h-36 rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80">
                             <img src="${optimizeDriveImage(item.URL_Foto, 600)}" onerror="this.onerror=null;this.src='${fallbackImg}';" alt="${item.Judul}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                         </div>
@@ -503,14 +507,13 @@
                     </a>
                 `;
             }).join("");
-
             const popularList = beritaList.slice(0, 5);
             popularContainer.innerHTML = popularList.map((item, idx) => {
                 const slug = buatSlugBerita(item.Judul, idx);
                 const nomor = String(idx + 1).padStart(2, "0");
                 const fallbackImg = "https://placehold.co/200x200/e2e8f0/1e293b?text=ASER";
                 return `
-                    <a href="berita/${slug}/" class="flex items-start justify-between gap-3 pb-3.5 border-b border-slate-200/80 group">
+                    <a href="${SITE_ORIGIN}/berita/${encodeURIComponent(slug)}" class="flex items-start justify-between gap-3 pb-3.5 border-b border-slate-200/80 group">
                         <div class="flex items-start gap-2.5 flex-1 min-w-0">
                             <span class="text-xl font-extrabold text-slate-300 group-hover:text-[#15803d] transition leading-none pt-0.5">${nomor}</span>
                             <div class="space-y-1 min-w-0">
@@ -525,28 +528,23 @@
                     </a>
                 `;
             }).join("");
-
             relatedSection.classList.remove("hidden");
         }
 
         function renderArticle(item, resolvedSlug) {
             if (!item) return;
-            cleanBrowserUrlBar();
-
             const itemIdx = allNewsItems.indexOf(item);
             const canonicalSlug = buatSlugBerita(item.Judul, itemIdx >= 0 ? itemIdx : 0);
             activeArticleSlug = resolvedSlug || canonicalSlug || "berita-1";
-
+            cleanBrowserUrlBar(activeArticleSlug);
             document.title = `${item.Judul} | Berita ASER`;
             document.getElementById("detail-judul").innerText = item.Judul || "Berita ASER";
             document.getElementById("detail-caption").innerText = item.Judul || "Dokumentasi PonPes As'adiyah Ereng-Ereng";
             document.getElementById("detail-tanggal").innerText = formatTanggalLengkap(item.Tanggal);
             document.getElementById("detail-isi").innerText = item.Isi_Berita || "";
-
             const fotoUrl = optimizeDriveImage(item.URL_Foto, 1200) || "keluarga besar.png";
             document.getElementById("detail-foto").src = fotoUrl;
             document.getElementById("share-link-input").value = getStaticShareUrl(activeArticleSlug);
-
             document.getElementById("loading-box").classList.add("hidden");
             document.getElementById("article-card").classList.remove("hidden");
             renderRelatedAndPopular(allNewsItems, item);
@@ -555,18 +553,15 @@
         function findTargetNews(beritaList) {
             if (!Array.isArray(beritaList) || beritaList.length === 0) return { item: null, slug: "berita-1" };
             const targetSlug = resolveSlugFromLocation(beritaList);
-
             if (targetSlug) {
                 const bySlug = beritaList.find((b, i) => buatSlugBerita(b.Judul, i) === targetSlug);
                 if (bySlug) return { item: bySlug, slug: targetSlug };
-
                 const matchIndex = targetSlug.match(/^berita-(\d+)$/);
                 if (matchIndex) {
                     const idx = parseInt(matchIndex[1], 10) - 1;
                     if (beritaList[idx]) return { item: beritaList[idx], slug: targetSlug };
                 }
             }
-
             const defaultItem = beritaList[0];
             return { item: defaultItem, slug: buatSlugBerita(defaultItem.Judul, 0) };
         }
@@ -594,7 +589,6 @@
         }
 
         window.addEventListener("hashchange", () => {
-            cleanBrowserUrlBar();
             if (allNewsItems.length > 0) {
                 const { item, slug } = findTargetNews(allNewsItems);
                 if (item) {
@@ -605,7 +599,6 @@
         });
 
         window.addEventListener("DOMContentLoaded", () => {
-            cleanBrowserUrlBar();
             let renderedFromCache = false;
             try {
                 const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
